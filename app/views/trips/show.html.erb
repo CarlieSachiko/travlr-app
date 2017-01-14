@@ -1,0 +1,11 @@
+<h1><%= @trip.name %></h1>
+<p><%= @trip.startdate.to_formatted_s(:long) %> - <%= @trip.enddate.to_formatted_s(:long) %></p>
+
+
+
+
+<br><br>
+<%= link_to "Invite Travellers", new_trip_user_trip_path(@trip) %> |
+<%= link_to "Back", trips_path(current_user) %> |
+<%= link_to "Edit", edit_trip_path %> |
+<%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' } %>

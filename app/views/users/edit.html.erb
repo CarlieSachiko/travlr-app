@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Edit Your Profile</h1>
+ <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, :required => true %>
+    </div>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, :required => true %>
+    </div>
+    <div class="field">
+      <%= f.label :hometown %>
+      <%= f.text_field :hometown %>
+    </div>
+    <div>
+      <%= f.file_field :image %>
+    </div>
+    <div class="actions"><%= f.submit "Save" %></div>
+  <% end %>
+  <%= link_to "Back", user_path(current_user) %>
+</div>
