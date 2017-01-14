@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :trips
   has_many :user_trips
-  has_many :invited_trips, through: :user_trips
+  has_many :invited_trips, through: :user_trips, source: :trip
 
   has_secure_password
   validates :email, presence: true, uniqueness: true
