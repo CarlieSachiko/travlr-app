@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   after_initialize :set_defaults
 
-  has_many :trips
-  has_many :user_trips
+  has_many :cities, dependent: :destroy
+  has_many :trips, dependent: :destroy
+  has_many :user_trips, dependent: :destroy
   has_many :invited_trips, through: :user_trips, source: :trip
 
   has_secure_password

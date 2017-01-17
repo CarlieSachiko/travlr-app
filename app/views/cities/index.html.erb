@@ -1,0 +1,42 @@
+<div class="profile">
+  <div class="jumbotron text-center">
+    <h1>My Bucket List</h1>
+    <%= form_for [@user, @city_new], :html => {:class => "new_city form-inline"} do |f| %>
+      <% if @city_new.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @city_new.errorsfull_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field form-group">
+        <%= label_tag :name, nil, class: 'sr-only' %>
+        <%= f.text_field :name, :required => true, :placeholder => "City Name", class: "form-control"%>
+      </div>
+      <div class="field form-group">
+        <%= label_tag :country, nil, class: 'sr-only' %>
+        <%= f.text_field :country, :required => true, :placeholder => "Country", class: "form-control" %>
+      </div><br><br>
+      <div class="actions"><%= f.submit 'Add to List' %></div>
+    <% end %>
+
+  </div>
+
+<div id="notice"><%= notice %></div>
+<% if (@user.cities.count > 0) %>
+  <ul>
+    <% @user.cities.each do |city| %>
+      <li><%= link_to city.name, city_path(city) %>, <%= city.country %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+    <p>You currently don't want to go anywhere. That's sad. You should fix that.</p>
+<% end %>
+
+</div>
+
+

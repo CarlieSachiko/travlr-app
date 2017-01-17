@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @city = City.new
+    # @current_city = City.find(params[:id])
   end
 
   # def new

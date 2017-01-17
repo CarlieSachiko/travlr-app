@@ -1,0 +1,78 @@
+        <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                My Bucket List
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h3 class="modal-title" id="myModalLabel">My Bucket List</h3>
+
+                      <button class="btn" data-toggle="modal" href="#stack2">Add New Destination</button>
+                    </div>
+
+                    <div class="modal-body">
+                      <div id="notice"><%= notice %></div>
+                      <% if (@user.cities.count > 0) %>
+                        <ul class="text-left">
+                          <% @user.cities.each do |city| %>
+                            <li><a data-toggle="modal" href="#cityModal" onclick="handleCityClicked('<%= city.name %>')"><%= city.name %></a>, <%= city.country %></li>
+                          <% end %>
+                        </ul>
+
+                      <% else %>
+                          <p>You currently don't want to go anywhere. That's sad. You should fix that.</p>
+                      <% end %>
+
+                      <%= form_for [@user, @city] do |f| %>
+                        <% if @city.errors.any? %>
+                          <div class="error_messages">
+                            <h2>Form is invalid</h2>
+                            <ul>
+                              <% for message in @city.errorsfull_messages %>
+                                <li><%= message %></li>
+                              <% end %>
+                            </ul>
+                          </div>
+                        <% end %>
+                        <div>Add New Destination</div>
+                        <div class="field">
+                          <%= label_tag :name, nil, class: 'sr-only' %>
+                          <%= f.text_field :name, :required => true, :placeholder => "City Name"%>
+                        </div><br>
+                        <div class="field">
+                          <%= label_tag :country, nil, class: 'sr-only' %>
+                          <%= f.text_field :country, :required => true, :placeholder => "Country" %>
+                        </div><br>
+                        <div class="actions"><%= f.submit 'Add'%></div>
+                      <% end %>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="modal fade" id="cityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModal2City"></h4>
+                    <%#= @current_city.country %>
+                  </div>
+                  <div class="modal-body">
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>

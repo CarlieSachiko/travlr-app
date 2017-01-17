@@ -1,15 +1,24 @@
 Rails.application.routes.draw do
   root "pages#show", page: 'home'
 
-  resources :users
+
+  resources :users, shallow: true do
+    resources :cities, shallow: true do
+      resources :accommodations
+      resources :sights
+      resources :activities
+      resources :eateries
+    end
+  end
+
   resources :trips, shallow: true do
-  # get '/user/new_trip' => 'trips#new_trip', :as => :new_trip
     resources :user_trips
   end
 
   resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

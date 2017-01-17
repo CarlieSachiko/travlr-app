@@ -1,9 +1,13 @@
-<h3>Create New Trip</h3>
+<h3>Edit Trip</h3>
 
 <%= form_for @trip do |f| %>
     <div>
         <%= f.label :name, nil, class: 'sr-only' %>
         <%= f.text_field :name, :placeholder => "Trip Name" %>
+    </div>
+    <div>
+        <%= f.label :country, nil, class: 'sr-only' %>
+        <%= f.text_field :country, :placeholder => "Country" %>
     </div>
     <div>
         <%= f.label :startdate, "Start Date"%><br>

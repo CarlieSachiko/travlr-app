@@ -1,8 +1,11 @@
+<div class="profile">
 <%= form_for [@trip, @user_trip] do |f| %>
   <%#= f.label :user_id, "Select Travellers"%>
   <%#= f.select(:user_id) %>
   <%= f.collection_select(:user_id, @users, :id, :name) %>
+  <%= f.submit "Add Traveller", class: "btn btn-default" %>
 
   <%#= options_from_collection_for_select(@users, :id, :name) %>
 
 <% end %>
+</div>

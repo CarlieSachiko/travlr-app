@@ -1,42 +1,48 @@
 <div class="profile">
-<div class="jumbotron">
-  <span><%= image_tag(@user.image.url, height: '300', class: "rounded image-cropper") %></span>
-  <span>
-    <p><%= @user.name %></p>
-    <p><%= @user.hometown %></p>
-  </span>
-</div>
+  <div class="jumbotron text-center centered">
+    <div id="profile-pic"><%= image_tag(@user.image.url, height: '300', class: "rounded image-cropper") %></div>
+    <!-- <br> -->
+      <h3><%= @user.name %></h3>
+      <p><%= @user.hometown %></p>
+
+  </div>
 
 
-<div class="container text-center">
+  <div class="container text-center">
 
-    <div class="row text-center">
+      <div class="row text-center">
 
-        <div class="col-md-6 col-sm-12 hero-feature">
-          <div class="thumbnail">
-            <div class="caption">
-              <h4>My Bucket List</h4>
-           </div>
+          <div class="col-md-6 col-sm-12 hero-feature">
+            <div class="thumbnail list">
+              <h4><%= link_to 'My Bucket List', user_cities_path(:current_user_id) %></h4>
           </div>
+
         </div>
 
-     <!--    <div class="col-md-4 col-sm-12 hero-feature">
-          <div class="thumbnail">
-            <div class="caption">
-              <h4>Been there, done that</h4>
+          <div class="col-md-6 col-sm-12 hero-feature">
+            <div class="thumbnail list">
+                <h4><%= link_to 'My Trips', trips_path %></h4>
             </div>
           </div>
-        </div> -->
 
-        <div class="col-md-6 col-sm-12 hero-feature ">
-          <div class="thumbnail">
-            <div class="caption">
-              <h4><%= link_to 'My Trips', trips_path %></h4>
-            </div>
-          </div>
-        </div>
+      </div>
 
     </div>
 
+      <div class="dropdown">
+    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown trigger
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dLabel">
+            <li><a href="#">Hi</a></li>
+    </ul>
   </div>
-  </div>
+</div>
+
+
+<script>
+function handleCityClicked(cityName) {
+  document.getElementById('myModal2City').textContent = cityName;
+}
+</script>
