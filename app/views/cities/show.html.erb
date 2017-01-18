@@ -5,261 +5,267 @@
     <%= link_to "Go Back", user_cities_path(current_user) %>
     <div id="notice"><%= notice %></div>
   </div>
-    <div class="container">
+
+  <div class="container">
     <div class="row">
 
       <div class="container text-center col-sm-6 col-md-3 hero-feature">
         <div class="thumbnail">
-        <h4>Places to Stay</h4>
-        <!-- Modal Trigger -->
-        <button type="button" class="btn" data-toggle="modal" data-target="#newAccModal">
-                Add Accommodation
-        </button>
-        <!-- Modal  -->
-        <div class="modal fade" id="newAccModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add Accomodation</h4>
-                  </div>
-                  <div class="modal-body">
-                    <%= form_for [@city, @accommodation_new] do |f| %>
-                      <% if @accommodation_new.errors.any? %>
-                        <div class="error_messages">
-                          <h2>Form is invalid</h2>
-                          <ul>
-                            <% for message in @accommodation_new.errorsfull_messages %>
-                              <li><%= message %></li>
-                            <% end %>
-                          </ul>
+          <h4>Places to Stay</h4>
+          <!-- Modal Trigger -->
+          <button type="button" class="btn" data-toggle="modal" data-target="#newAccModal">
+                  Add Accommodation
+          </button>
+          <hr>
+          <!-- Modal  -->
+          <div class="modal fade" id="newAccModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Add Accomodation</h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= form_for [@city, @accommodation_new] do |f| %>
+                        <% if @accommodation_new.errors.any? %>
+                          <div class="error_messages">
+                            <h2>Form is invalid</h2>
+                            <ul>
+                              <% for message in @accommodation_new.errorsfull_messages %>
+                                <li><%= message %></li>
+                              <% end %>
+                            </ul>
+                          </div>
+                        <% end %>
+                        <div class="field form-group">
+                          <%= label_tag :name, nil, class: 'sr-only' %>
+                          <%= f.text_field :name, :required => true, :placeholder => "Name", class: "form-control"%>
                         </div>
-                      <% end %>
-                      <div class="field form-group">
-                        <%= label_tag :name, nil, class: 'sr-only' %>
-                        <%= f.text_field :name, :required => true, :placeholder => "Name", class: "form-control"%>
-                      </div>
-                      <div class="field form-group">
-                        <%= label_tag :address, nil, class: 'sr-only' %>
-                        <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
-                      </div>
-                      <div class="field form-group">
-                        <%= label_tag :note, "Add Notes", class: "text-left" %>
-                        <%= text_area_tag :note, nil, class: "form-control" %>
-                      </div>
+                        <div class="field form-group">
+                          <%= label_tag :address, nil, class: 'sr-only' %>
+                          <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
+                        </div>
+                        <div class="field form-group">
+                          <%= label_tag :note, "Add Notes", class: "text-left" %>
+                          <%= text_area_tag :note, nil, class: "form-control" %>
+                        </div>
 
-                      <br><br>
-                      <div class="actions"><%= f.submit 'Add Accomodation' %></div>
-                    <% end %>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <br><br>
+                        <div class="actions"><%= f.submit 'Add Accomodation' %></div>
+                      <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-        <% if (@city.accommodations.count > 0) %>
-          <ul class="text-left">
-            <% @city.accommodations.each do |a| %>
-              <%= a.name %>
-            <% end %>
-          </ul>
+          <% if (@city.accommodations.count > 0) %>
+            <ul class="text-left">
+              <% @city.accommodations.each do |a| %>
+                <li>
+                  <%= link_to a.name, accommodation_path(a) %>
+                </li>
+              <% end %>
+            </ul>
 
-        <% else %>
-            <p>You currently have nowhere to sleep.</p>
-        <% end %>
+          <% else %>
+              <p>You currently have nowhere to sleep.</p>
+          <% end %>
         </div>
       </div>
 
       <div class="container text-center col-sm-6 col-md-3 hero-feature">
         <div class="thumbnail">
-        <h4>Things to do</h4>
-        <!-- Modal Trigger -->
-        <button type="button" class="btn" data-toggle="modal" data-target="#newActModal">
-                Add Activity
-        </button>
-        <!-- Modal  -->
-        <div class="modal fade" id="newActModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add Activity</h4>
-                  </div>
-                  <div class="modal-body">
-                    <%= form_for [@city, @activity_new] do |f| %>
-                      <% if @activity_new.errors.any? %>
-                        <div class="error_messages">
-                          <h2>Form is invalid</h2>
-                          <ul>
-                            <% for message in @activity_new.errorsfull_messages %>
-                              <li><%= message %></li>
-                            <% end %>
-                          </ul>
+          <h4>Things to do</h4>
+          <!-- Modal Trigger -->
+          <button type="button" class="btn" data-toggle="modal" data-target="#newActModal">
+                  Add Activity
+          </button>
+          <hr>
+          <!-- Modal  -->
+          <div class="modal fade" id="newActModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Add Activity</h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= form_for [@city, @activity_new] do |f| %>
+                        <% if @activity_new.errors.any? %>
+                          <div class="error_messages">
+                            <h2>Form is invalid</h2>
+                            <ul>
+                              <% for message in @activity_new.errorsfull_messages %>
+                                <li><%= message %></li>
+                              <% end %>
+                            </ul>
+                          </div>
+                        <% end %>
+                        <div class="field form-group">
+                          <%= label_tag :name, nil, class: 'sr-only' %>
+                          <%= f.text_field :name, :required => true, :placeholder => "What is it?", class: "form-control"%>
                         </div>
-                      <% end %>
-                      <div class="field form-group">
-                        <%= label_tag :name, nil, class: 'sr-only' %>
-                        <%= f.text_field :name, :required => true, :placeholder => "What is it?", class: "form-control"%>
-                      </div>
-                      <div class="field form-group">
-                        <%= label_tag :note, "Add Notes", class: "text-left" %>
-                        <%= text_area_tag :note, nil, class: "form-control" %>
-                      </div>
+                        <div class="field form-group">
+                          <%= label_tag :note, "Add Notes", class: "text-left" %>
+                          <%= text_area_tag :note, nil, class: "form-control" %>
+                        </div>
 
-                      <br><br>
-                      <div class="actions"><%= f.submit 'Add Activity' %></div>
-                    <% end %>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <br><br>
+                        <div class="actions"><%= f.submit 'Add Activity' %></div>
+                      <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-        <% if (@city.activities.count > 0) %>
-          <ul>
-            <% @city.activities.each do |a| %>
-              <%= a.name %>
-            <% end %>
-          </ul>
+          <% if (@city.activities.count > 0) %>
+            <ul class="text-left">
+              <% @city.activities.each do |a| %>
+                <li><%= link_to a.name, activity_path(a) %></li>
+              <% end %>
+            </ul>
 
-        <% else %>
-            <p>You currently don't have anything to do.</p>
-        <% end %>
+          <% else %>
+              <p>You currently have nothing to do.</p>
+          <% end %>
         </div>
       </div>
 
       <div class="container text-center col-sm-6 col-md-3 hero-feature">
         <div class="thumbnail">
-        <h4>Sights to See</h4>
-        <!-- Modal Trigger -->
-        <button type="button" class="btn" data-toggle="modal" data-target="#newSightModal">
-                Add Sight
-        </button>
-        <!-- Modal  -->
-        <div class="modal fade" id="newSightModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add Accomodation</h4>
-                  </div>
-                  <div class="modal-body">
-                    <%= form_for [@city, @sight_new] do |f| %>
-                      <% if @sight_new.errors.any? %>
-                        <div class="error_messages">
-                          <h2>Form is invalid</h2>
-                          <ul>
-                            <% for message in @sight_new.errorsfull_messages %>
-                              <li><%= message %></li>
-                            <% end %>
-                          </ul>
+          <h4>Sights to See</h4>
+          <!-- Modal Trigger -->
+          <button type="button" class="btn" data-toggle="modal" data-target="#newSightModal">
+                  Add Sight
+          </button>
+          <hr>
+          <!-- Modal  -->
+          <div class="modal fade" id="newSightModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Add Accomodation</h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= form_for [@city, @sight_new] do |f| %>
+                        <% if @sight_new.errors.any? %>
+                          <div class="error_messages">
+                            <h2>Form is invalid</h2>
+                            <ul>
+                              <% for message in @sight_new.errorsfull_messages %>
+                                <li><%= message %></li>
+                              <% end %>
+                            </ul>
+                          </div>
+                        <% end %>
+                        <div class="field form-group">
+                          <%= label_tag :name, nil, class: 'sr-only' %>
+                          <%= f.text_field :name, :required => true, :placeholder => "Name", class: "form-control"%>
                         </div>
-                      <% end %>
-                      <div class="field form-group">
-                        <%= label_tag :name, nil, class: 'sr-only' %>
-                        <%= f.text_field :name, :required => true, :placeholder => "Name", class: "form-control"%>
-                      </div>
-                      <div class="field form-group">
-                        <%= label_tag :address, nil, class: 'sr-only' %>
-                        <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
-                      </div>
-                      <div class="field form-group">
-                        <%= label_tag :note, "Add Notes", class: "text-left" %>
-                        <%= text_area_tag :note, nil, class: "form-control" %>
-                      </div>
+                        <div class="field form-group">
+                          <%= label_tag :address, nil, class: 'sr-only' %>
+                          <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
+                        </div>
+                        <div class="field form-group">
+                          <%= label_tag :note, "Add Notes", class: "text-left" %>
+                          <%= text_area_tag :note, nil, class: "form-control" %>
+                        </div>
 
-                      <br><br>
-                      <div class="actions"><%= f.submit 'Add Sight' %></div>
-                    <% end %>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <br><br>
+                        <div class="actions"><%= f.submit 'Add Sight' %></div>
+                      <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-        <% if (@city.sights.count > 0) %>
-          <ul>
-            <% @city.sights.each do |s| %>
-              <%= s.name %>
-            <% end %>
-          </ul>
+          <% if (@city.sights.count > 0) %>
+            <ul class="text-left">
+              <% @city.sights.each do |s| %>
+                <li><%= link_to s.name, sight_path(s) %></li>
+              <% end %>
+            </ul>
 
-        <% else %>
-            <p>You currently don't have anything to see.</p>
-        <% end %>
+          <% else %>
+              <p>You currently have nothing to see.</p>
+          <% end %>
         </div>
       </div>
 
       <div class="container text-center col-sm-6 col-md-3 hero-feature">
-      <div class="thumbnail">
-        <h4>Places to Eat</h4>
-        <!-- Modal Trigger -->
-        <button type="button" class="btn" data-toggle="modal" data-target="#newEatModal">
-                Add Eatery
-        </button>
-        <!-- Modal  -->
-        <div class="modal fade" id="newEatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add Accomodation</h4>
-                  </div>
-                  <div class="modal-body">
-                    <%= form_for [@city, @eatery_new] do |f| %>
-                      <% if @eatery_new.errors.any? %>
-                        <div class="error_messages">
-                          <h2>Form is invalid</h2>
-                          <ul>
-                            <% for message in @eatery_new.errorsfull_messages %>
-                              <li><%= message %></li>
-                            <% end %>
-                          </ul>
+        <div class="thumbnail">
+          <h4>Places to Eat</h4>
+          <!-- Modal Trigger -->
+          <button type="button" class="btn" data-toggle="modal" data-target="#newEatModal">
+                  Add Eatery
+          </button>
+          <hr>
+          <!-- Modal  -->
+          <div class="modal fade" id="newEatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Add Accomodation</h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= form_for [@city, @eatery_new] do |f| %>
+                        <% if @eatery_new.errors.any? %>
+                          <div class="error_messages">
+                            <h2>Form is invalid</h2>
+                            <ul>
+                              <% for message in @eatery_new.errorsfull_messages %>
+                                <li><%= message %></li>
+                              <% end %>
+                            </ul>
+                          </div>
+                        <% end %>
+                        <div class="field form-group">
+                          <%= label_tag :name, nil, class: 'sr-only' %>
+                          <%= f.text_field :name, :required => true, :placeholder => "Name", class: "form-control"%>
                         </div>
-                      <% end %>
-                      <div class="field form-group">
-                        <%= label_tag :name, nil, class: 'sr-only' %>
-                        <%= f.text_field :name, :required => true, :placeholder => "Name", class: "form-control"%>
-                      </div>
-                      <div class="field form-group">
-                        <%= label_tag :address, nil, class: 'sr-only' %>
-                        <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
-                      </div>
-                      <div class="field form-group">
-                        <%= label_tag :note, "Add Notes", class: "text-left" %>
-                        <%= text_area_tag :note, nil, class: "form-control" %>
-                      </div>
+                        <div class="field form-group">
+                          <%= label_tag :address, nil, class: 'sr-only' %>
+                          <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
+                        </div>
+                        <div class="field form-group">
+                          <%= label_tag :note, "Add Notes", class: "text-left" %>
+                          <%= text_area_tag :note, nil, class: "form-control" %>
+                        </div>
 
-                      <br><br>
-                      <div class="actions"><%= f.submit 'Add Eatery' %></div>
-                    <% end %>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <br><br>
+                        <div class="actions"><%= f.submit 'Add Eatery' %></div>
+                      <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-        <% if (@city.eateries.count > 0) %>
-          <ul>
-            <% @city.eateries.each do |e| %>
-              <%= e.name %>
-            <% end %>
-          </ul>
+          <% if (@city.eateries.count > 0) %>
+            <ul class="text-left">
+              <% @city.eateries.each do |e| %>
+                <li><%= link_to e.name, eatery_path(e) %></li>
+              <% end %>
+            </ul>
 
-        <% else %>
-            <p>You are currently going to starve.</p>
-        <% end %>
+          <% else %>
+              <p>You currently are going to starve.</p>
+          <% end %>
         </div>
       </div>
 
     </div>
-    </div>
-
-
-
+  </div>
 
 </div>
+
+

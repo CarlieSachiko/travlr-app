@@ -11,12 +11,10 @@ class UserTripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.find(params[:trip_id])
-    # @user = User.find(params[:user_id])
-    @user_trip = UserTrip.new(params.require(:user_trip).permit(:trip_id, :user_id))
-
+    @user_trip = UserTrip.new(params.require(:user_trip).permit(:user_id))
+    @user_trip.trip_id = params[:trip_id]
     if @user_trip.save
-      redirect_to @trip, notice: 'Traveller was successfully added.'
+      redirect_to trip_path(params[:trip_id]), notice: 'Traveller was successfully added.'
     else
       render :new
     end

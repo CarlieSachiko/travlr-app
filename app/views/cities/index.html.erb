@@ -1,6 +1,7 @@
 <div class="profile">
   <div class="jumbotron text-center">
     <h1>My Bucket List</h1>
+    <h4>add it. see it. check it off the list.</h4>
     <%= form_for [@user, @city_new], :html => {:class => "new_city form-inline"} do |f| %>
       <% if @city_new.errors.any? %>
         <div class="error_messages">
@@ -19,10 +20,11 @@
       <div class="field form-group">
         <%= label_tag :country, nil, class: 'sr-only' %>
         <%= f.text_field :country, :required => true, :placeholder => "Country", class: "form-control" %>
-      </div><br><br>
-      <div class="actions"><%= f.submit 'Add to List' %></div>
+      </div>
+      <div class="actions form-group btn"><%= f.submit 'Add to List', class: "form-control" %></div>
     <% end %>
 
+    <a href=<%= user_path(current_user)%> ><div class="glyphicon glyphicon-chevron-left"></div>
   </div>
 
 <div id="notice"><%= notice %></div>

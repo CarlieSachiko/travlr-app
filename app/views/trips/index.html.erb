@@ -1,11 +1,40 @@
 <div class="profile">
-  <div class="jumbotron text-center"><h1>Your Trips</h1>
+  <div class="jumbotron text-center"><h1>Your Trips</h1><br>
     <div id="notice"><%= notice %> </div>
-    <%= link_to 'Create New Trip', new_trip_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
+      <%= form_for [@user, @trip_new], :html => {:class => "new_trip form-inline"} do |f| %>
+      <% if @trip_new.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @trip_new.errorsfull_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field form-group">
+        <%= label_tag :name, nil, class: 'sr-only' %>
+        <%= f.text_field :name, :required => true, :placeholder => "Trip Name", class: "form-control"%>
+      </div>
+      <div class="field form-group">
+        <%= label_tag :country, nil, class: 'sr-only' %>
+        <%= f.text_field :country, :required => true, :placeholder => "Country", class: "form-control" %>
+      </div>
+      <br>
+      <div class="field form-group">
+          <%= f.label :startdate, "Start Date" %>
+          <%= f.date_field :startdate, :placeholder => "Start Date", class: "form-control" %>
+      </div>
+      <div class="field form-group">
+          <%= f.label :enddate, "End Date" %>
+          <%= f.date_field :enddate, :placeholder => "End Date", class: "form-control" %>
+      </div><br><br>
+      <%= f.submit "Save New Trip", class: "btn btn-default" %>
+    <% end %>
+    <br>
 
-    <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content"></div>
+      <a href=<%= user_path(current_user)%> ><div class="glyphicon glyphicon-chevron-left"></div>
+
       </div>
     </div>
   </div>
@@ -21,28 +50,4 @@
       <p>You currently have no trips. Why?</p>
   <% end %>
 
-
-  <h3>Create New Trip</h3>
-
-  <%= form_for @new_trip do |f| %>
-      <div>
-          <%= f.label :name, nil, class: 'sr-only' %>
-          <%= f.text_field :name, :placeholder => "Trip Name" %>
-      </div>
-      <div>
-          <%= f.label :country, nil, class: 'sr-only' %>
-          <%= f.text_field :country, :placeholder => "Country" %>
-      </div>
-      <div>
-          <%= f.label :startdate, "Start Date"%><br>
-          <%= f.date_field :startdate, :placeholder => "Start Date" %>
-      </div>
-      <div>
-          <%= f.label :enddate, "End Date" %><br>
-          <%= f.date_field :enddate, :placeholder => "End Date" %>
-      </div>
-      <%= f.submit "Save New Trip", class: "btn btn-default" %>
-  <% end %>
-
-  <%= link_to "Back", user_path(current_user) %>
 </div>

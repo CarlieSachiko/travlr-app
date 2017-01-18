@@ -1,0 +1,19 @@
+<div class="profile">
+  <div class="jumbotron text-center">
+    <h2>My Bucket List</h2>
+    <h3><%= @eatery.city.name %>, <%= @eatery.city.country %></h3>
+    <%= link_to "Go Back", city_path(@eatery.city_id) %>
+    <div id="notice"><%= notice %></div>
+  </div>
+
+<h4><%= @eatery.name %></h4>
+<h4>Address: <%= @eatery.address %></h4>
+
+
+  <%= link_to "Edit", edit_eatery_path %> |
+  <%= link_to "Delete", sight_path(@eatery), method: :delete, data: { confirm: 'Are you sure???' } %>
+
+
+
+
+</div>

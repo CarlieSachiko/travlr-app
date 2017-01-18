@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :trips, shallow: true do
+    resources :days
     resources :user_trips
   end
 

@@ -3,24 +3,19 @@ class TripsController < ApplicationController
   def index
     @trips = Trip.all
     # @trip = Trip.find(params[:id])
-    @new_trip = Trip.new
+    @trip_new = Trip.new
   end
 
   def show
     @trip = Trip.find(params[:id])
+    @invited_users = @trip.invited_users.all
+    @day_new = Day.new
 
   end
 
   # def new
   #   @trip = Trip.new
   # end
-
-  def new_trip
-  respond_to do |format|
-    format.html
-    format.js
-  end
-end
 
   def create
     @user = User.find(current_user.id)
@@ -55,7 +50,7 @@ end
   private
 
   def t_params
-    params.require(:trip).permit(:name, :startdate, :enddate)
+    params.require(:trip).permit(:name, :country, :startdate, :enddate)
   end
 
 end
