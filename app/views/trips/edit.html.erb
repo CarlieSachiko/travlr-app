@@ -1,13 +1,25 @@
 <div class="profile">
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center" style="background-image: url(<%= @trip.image.url %>)">
     <h3>Edit <%= @trip.name %></h3>
     <div id="notice"><%= notice %></div>
-    <%= link_to 'Back to Trip', trip_path(@trip) %>
   </div>
+
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Trips", trips_path(current_user) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to @trip.name, trip_path(@trip) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "Edit", edit_trip_path(@trip) %>
+    </div>
+  </div>
+
   <div class="container">
 
 <!-- Modal Trigger -->
-          <button type="button" class="btn" data-toggle="modal" data-target="#inviteModal">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#inviteModal">
                   Invite Travellers
           </button>
           <!-- Modal  -->
@@ -54,10 +66,10 @@
         <%= f.date_field :enddate, :placeholder => "End Date", class: "form-control" %>
     </div>
     <div class="field">
-        <%= f.label :image, "Image", class: 'sr-only' %>
+        <%= f.label :image, "Banner Image" %>
         <%= f.file_field :image %>
     </div><br><br>
-    <%= f.submit "Save", class: "btn btn-default" %>
+    <%= f.submit "Save", class: "btn " %>
 <% end %>
 <br>&nbsp;
 <br>&nbsp;

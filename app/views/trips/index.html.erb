@@ -1,11 +1,9 @@
 <div class="profile trip-index">
   <div class="jumbotron text-center">
-    <h1>Your Trips</h1>
+    <h2>YOUR TRIPS</h2>
     <h4>create it. plan it. make it happ'n capt'n.</h4>
 
     <br>
-
-    <div id="notice"><%= notice %> </div>
 
       <!-- Modal Trigger -->
           <button type="button" class="btn" data-toggle="modal" data-target="#newAccModal">
@@ -20,7 +18,7 @@
                       <h4 class="modal-title">New Trip</h4>
                     </div>
                     <div class="modal-body">
-                      <%= form_for [@user, @trip_new], :html => {:class => "new_trip form-inline"} do |f| %>
+                      <%= form_for [@user, @trip_new] do |f| %>
                         <% if @trip_new.errors.any? %>
                           <div class="error_messages">
                             <h2>Form is invalid</h2>
@@ -31,25 +29,25 @@
                             </ul>
                           </div>
                         <% end %>
-                        <div class="field">
+                        <div class="field form-group">
                           <%= label_tag :name, nil, class: 'sr-only' %>
                           <%= f.text_field :name, :required => true, :placeholder => "Trip Name", class: "form-control"%>
                         </div>
-                        <div class="field">
+                        <div class="field form-group">
                           <%= label_tag :country, nil, class: 'sr-only' %>
                           <%= f.text_field :country, :required => true, :placeholder => "Country", class: "form-control" %>
                         </div>
-                        <br>
-                        <div class="field">
+
+                        <div class="field form-group text-left">
                             <%= f.label :startdate, "Start Date" %>
                             <%= f.date_field :startdate, :placeholder => "Start Date", class: "form-control" %>
                         </div>
-                        <div class="field">
+                        <div class="field form-group text-left">
                             <%= f.label :enddate, "End Date" %>
                             <%= f.date_field :enddate, :placeholder => "End Date", class: "form-control" %>
                         </div>
-                        <div class="field">
-                          <%= f.label :image, "Image", class: 'sr-only' %>
+                        <div class="field form-group text-left">
+                          <%= f.label :image, "Banner Image" %>
                           <%= f.file_field :image %>
                         </div><br><br>
                         <%= f.submit "Save New Trip", class: "btn btn-default" %>
@@ -61,27 +59,34 @@
                   </div>
                 </div>
               </div>
-      <br>
-      <a href=<%= user_path(current_user)%> ><div class="glyphicon glyphicon-chevron-left"></div></a>
-
+         <div id="notice"><%= notice %> </div>
       </div>
+    </div>
+
+
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Trips", trips_path(current_user) %>
     </div>
   </div>
 
   <div class="container">
+
     <% if (current_user.trips.count > 0) %>
       <div class="row">
         <% current_user.trips.each do |t| %>
           <div class="container text-center col-xs-6 col-sm-4 hero-feature trip-thumb" >
-            <div class="thumbnail" style="background-image: url(<%= t.image.url %>)">
+            <div class="thumbnail trip-bckgrnd" style="background-image: url(<%= t.image.url %>)">
               <div class='caption'>
-                <h2 class="trip-info"><%= link_to t.name.upcase, trip_path(t) %></h2>
+                <h3><%= link_to t.name.upcase, trip_path(t), class: "trip-info" %></h3>
                 <p class="trip-info"><%= t.startdate.to_formatted_s(:long) %> - <%= t.enddate.to_formatted_s(:long) %></p>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
 
     <% else %>
         <p class="text-center">You currently have no trips. Why?</p>

@@ -13,6 +13,7 @@ class DaysController < ApplicationController
 
   def edit
     @day = Day.find(params[:id])
+    @trip = Trip.where(id: @day.trip_id).first
   end
 
   def update

@@ -8,6 +8,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @creator = User.where(id: @trip.user_id).first
     @invited_users = @trip.invited_users.all
     @day_new = Day.new
   end

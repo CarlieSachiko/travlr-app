@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :hometown
       t.attachment :image
+      t.attachment :banner
 
       t.timestamps null: false
     end

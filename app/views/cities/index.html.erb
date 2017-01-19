@@ -1,6 +1,6 @@
 <div class="profile">
   <div class="jumbotron text-center">
-    <h1>My Bucket List</h1>
+    <h2>MY BUCKET LIST</h2>
     <h4>add it. see it. check it off the list. increase happiness.</h4>
     <br>
     <%= form_for [@user, @city_new], :html => {:class => "new_city form-inline"} do |f| %>
@@ -24,8 +24,14 @@
       </div>
       <div class="actions form-group btn"><%= f.submit 'Add to List', class: "form-control" %></div>
     <% end %>
+  </div>
 
-    <a href=<%= user_path(current_user)%> ><div class="glyphicon glyphicon-chevron-left"></div></a>
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Bucket List", user_cities_path(current_user) %>
+    </div>
   </div>
 
   <div class="container">
@@ -33,14 +39,32 @@
     <% if (@user.cities.count > 0) %>
       <ul>
         <% @user.cities.each do |city| %>
-          <li><h3><%= link_to city.name, city_path(city) %>, <%= city.country %></h3></li>
+          <li><h3 class="blck-link"><%= link_to city.name, city_path(city) %>, <%= city.country %></h3></li>
         <% end %>
       </ul>
 
     <% else %>
-        <p class="text-center">You currently don't want to go anywhere. That's sad. You should fix that.</p>
+        <div class="text-center">You currently don't want to go anywhere. That's sad. You should fix that.</div>
     <% end %>
   </div>
+
+
+
+ <section class="section section--tuli">
+            <h2 class="section__title">
+                Tuli
+            </h2>
+            <div class="toggle-button toggle-button--tuli">
+                <input id="toggleButton11" type="checkbox">
+                <label for="toggleButton11">Agree this</label>
+                <div class="toggle-button__icon"></div>
+            </div>
+            <div class="toggle-button toggle-button--tuli">
+                <input id="toggleButton12" type="checkbox">
+                <label for="toggleButton12">Agree that</label>
+                <div class="toggle-button__icon"></div>
+            </div>
+        </section>
 
 </div>
 

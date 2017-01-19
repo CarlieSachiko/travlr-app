@@ -20,9 +20,8 @@
 @import "bootstrap";
 
 * {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
-
 
 .profile-image-cropper {
   width: 40px;
@@ -45,41 +44,75 @@
   margin: 10px;
 }
 
-ul.dropdown-menu {
-  // background-color:black;
+.glyphicon {
+  font-size: 30px;
+  margin: 10px;
+  margin-left: 20px;
 }
 
-.glyphicon {
-    font-size: 30px;
-    margin: 10px;
-    margin-left: 20px;
-  }
+span.glyphicon {
+  font-size: 10px;
+}
 
-  span.glyphicon {
-    font-size: 10px;
+div.modal {
+  color:black;
+}
+
+div.progressbar {
+  padding-top: 0;
+  margin-bottom: 20px;
+  background-color: #C1C1C1;
+
+  a, .glyphicon {
+    color: white
   }
+}
 
 div.profile{
 
-  .navbar {
-    background-color: #005566;
+  a, .glyphicon {
     color: white;
   }
-    .list {
-      height: 80px;
-      vertical-align: middle;
-      background-color: #005566;
-    }
 
-    .list a {
-      color: white;
-    }
+  padding-top: 60px;
 
-    div h4 {
-      vertical-align: middle;
-    }
+  h2 {
+    letter-spacing: 4px;
+  }
 
-    padding-top: 60px;
+  h3 {
+    letter-spacing: 2px;
+  }
+
+  div.jumbotron {
+    background-color: #005566;
+    background-size: cover;
+    margin-bottom: 0;
+    color: white;
+    // background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+  }
+
+  div.profile-btn {
+    margin-top: 40px;
+  }
+
+  .blck-link a, .blck-link {
+    color: black
+  }
+
+  .list {
+    height: 80px;
+    vertical-align: middle;
+    background-color: #005566;
+
+    h3 {
+      letter-spacing: 4px;
+    }
+  }
+
+  div h4 {
+    vertical-align: middle;
+  }
 
   .image-cropper {
     border-radius: 50%;
@@ -99,27 +132,125 @@ div.profile{
     position: relative;
     transform: translateX(-50%);
   }
+
+.section {
+  text-align: center;
+  height: 100%;
+  margin: 0 auto;
+  padding: 6em 0; }
+  .section__title {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #fff;
+    margin-bottom: 3em; }
+  .section--aava {
+    background: #2994B2; }
+  .section--tuuli {
+    background: #474744; }
+  .section--vesi {
+    background: #54567A; }
+  .section--sade {
+    background: #2D4659; }
+  .section--ilma {
+    background: #095062; }
+  .section--tuli {
+    background: #068B78; }
+
+.toggle-button {
+  margin: 0 20px;
 }
 
-p.trip-info {
+.toggle-button {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+}
+
+.toggle-button label {
+  display: inline-block;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: left;
+}
+.toggle-button input {
+  display: none; }
+.toggle-button__icon {
+  cursor: pointer;
+  pointer-events: none; }
+.toggle-button__icon:before, .toggle-button__icon:after {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 35%;
+  transition: 0.2s ease-out; }
+
+.toggle-button--tuli label {
+  line-height: 20px;
+  text-indent: 30px; }
+
+.toggle-button--tuli input[type=checkbox]:checked ~ .toggle-button__icon {
+  background: #fff; }
+  .toggle-button--tuli input[type=checkbox]:checked ~ .toggle-button__icon:before, .toggle-button--tuli input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    opacity: 1; }
+
+.toggle-button--tuli .toggle-button__icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  transition: all 0.2s;
+  border: 2px solid #fff;
+  border-radius: 1px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); }
+  .toggle-button--tuli .toggle-button__icon:before, .toggle-button--tuli .toggle-button__icon:after {
+    top: 5px;
+    left: 2px;
+    width: 12px;
+    height: 2px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    top: 35%;
+    background: #61B136;
+    opacity: 0;
+    transform-origin: left center; }
+  .toggle-button--tuli .toggle-button__icon:before {
+    transform: translate(0, 0) rotate(45deg) scale(0.6, 1); }
+  .toggle-button--tuli .toggle-button__icon:after {
+    transform: translate(4px, 6px) rotate(-45deg); }
+
+.toggle-button--tuli:hover input[type=checkbox]:not(:checked) ~ .toggle-button__icon {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+
+}
+
+p.trip-info, a.trip-info, a.trip-info:hover {
   color: white;
 }
 
-div.trip-index {
+a.trip-info {
+  letter-spacing: 2px;
+}
 
-  div.thumbnail {
-    height: 700px;
-  }
-
-  div.trip-thumb p {
-    color:white;
-  }
-
+div.trip-bckgrnd {
+   background-color: #C1C1C1;
+   height: 160px;
+   background-size: cover;
 }
 
 div.trip-show {
+
   .jumbotron {
     color: white;
+    background-size: cover;
+
+    h1 {
+      letter-spacing: 4px;
+    }
   }
 
   .profile-image-cropper {
@@ -252,7 +383,7 @@ div.trip-show {
     right: auto;
   }
   .timeline-badge.primary {
-    background-color: #2e6da4 !important;
+    background-color: #068B78 !important;
   }
   .timeline-badge.success {
     background-color: #3f903f !important;

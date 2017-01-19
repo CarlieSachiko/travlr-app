@@ -3,128 +3,133 @@
     <h1><%= @trip.name.upcase %></h1>
     <h4 class="text-center"><%= @trip.startdate.to_formatted_s(:long) %> - <%= @trip.enddate.to_formatted_s(:long) %></h4>
     <h3><%= @trip.country %></h3>
-    <div id="notice"><%= notice %></div>
+    <div id="notice"><%#= notice %></div>
     <div>
-     <%= link_to 'Back to My Trips', trips_path %> |
-    <%= link_to "Edit", edit_trip_path %> |
-    <%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' } %>
+      <%= link_to "Edit", edit_trip_path %> |
+      <%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' } %>
+    </div>
   </div>
+
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Trips", trips_path(current_user) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to @trip.name, trip_path(@trip) %>
+    </div>
   </div>
 
   <div class="container">
-  <span>Invited Travellers: </span>
-  <% @invited_users.each do |u| %>
-    <span>
-    <% if u.image? %>
-      <%= image_tag(u.image.url, height: '50', class: "rounded profile-image-cropper") %>
-    <% else %>
-      <%= image_tag('default_profile.png', height: '50', class: "rounded profile-image-cropper") %>
+    <div>
+      <span>Created by: </span><%= @creator.name %>
+    </div>
+
+    <br>
+
+    <span>Invited Travellers: </span>
+    <% @invited_users.each do |u| %>
+      <span>
+        <% if u.image? %>
+          <%= image_tag(u.image.url, height: '40', class: "rounded profile-image-cropper sm") %>
+        <% else %>
+          <%= image_tag('default_profile.png', height: '40', class: "rounded profile-image-cropper sm") %>
+        <% end %>
+        <%= u.name %>
+        <%= link_to "x", user_trip_path(:user_id => u.id), method: :delete, data: { confirm: 'Are you sure???' }, class: "blck-link" %>
+      </span>
+      &nbsp;
     <% end %>
-    <%= u.name %>
-    <%= link_to "x", user_trip_path(:user_id => u.id), method: :delete, data: { confirm: 'Are you sure???' } %>
-    </span>
-    &nbsp;
-  <% end %>
-  <hr>
 
+    <hr>
 
-  </div>
-
-  <div class="container">
     <div class="page-header">
         <span><h1 id="timeline">Itinerary</h1></span>
         <!-- Modal Trigger -->
-          <button type="button" class="btn" data-toggle="modal" data-target="#dayModal">
-                  Add Day
-          </button>
+        <button type="button" class="btn" data-toggle="modal" data-target="#dayModal">
+                Add Day
+        </button>
           <!-- Modal  -->
-          <div class="modal fade" id="dayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Add Day</h4>
-                    </div>
-                    <div class="modal-body">
-                      <%= form_for [@trip, @day_new] do |f| %>
-                        <% if @day_new.errors.any? %>
-                          <div class="error_messages">
-                            <h2>Form is invalid</h2>
-                            <ul>
-                              <% for message in @day_new.errorsfull_messages %>
-                                <li><%= message %></li>
-                              <% end %>
-                            </ul>
-                          </div>
+        <div class="modal fade" id="dayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center">Add Day</h4>
+              </div>
+              <div class="modal-body">
+                <%= form_for [@trip, @day_new] do |f| %>
+                  <% if @day_new.errors.any? %>
+                    <div class="error_messages">
+                      <h2>Form is invalid</h2>
+                      <ul>
+                        <% for message in @day_new.errorsfull_messages %>
+                          <li><%= message %></li>
                         <% end %>
-                        <div class="field form-group">
-                          <%= label_tag :number, "Day #" %>
-                          <%= f.number_field :number, :required => true, :placeholder => "Day Number" %>
-                        </div>
-                        <div class="field form-group">
-                          <%= label_tag :date, nil, class: 'sr-only' %>
-                          <%= f.date_field :date, :required => true, :placeholder => "Date" %>
-                        </div>
-                        <div class="field form-group">
-                          <%= label_tag :location, nil, class: 'sr-only' %>
-                          <%= f.text_field :location, :required => true, :placeholder => "Where will you be?", class: "form-control"%>
-                        </div>
-                        <div class="field form-group">
-                          <%= label_tag :accommodation, nil, class: 'sr-only' %>
-                          <%= f.text_field :accommodation, :required => true, :placeholder => "Where will you sleep?", class: "form-control" %>
-                        </div>
-                        <div class="field form-group">
-                          <%= label_tag :activity, nil, class: 'sr-only' %>
-                          <%= f.text_field :activity, :required => true, :placeholder => "What are you going to do?", class: "form-control" %>
-                        </div>
-                        <div class="field form-group">
-                          <%= label_tag :note, "Add Notes", class: "text-left" %>
-                          <%= text_area_tag :note, nil, class: "form-control" %>
-                        </div>
-
-                        <br><br>
-                        <div class="actions"><%= f.submit 'Add Day' %></div>
-                      <% end %>
+                      </ul>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+                  <% end %>
+                  <div class="field form-group">
+                    <%= label_tag :number, "Day #" %>
+                    <%= f.number_field :number, :required => true, :placeholder => "Day Number" %>
                   </div>
+                  <div class="field form-group">
+                    <%= label_tag :date, nil, class: 'sr-only' %>
+                    <%= f.date_field :date, :required => true, :placeholder => "Date" %>
+                  </div>
+                  <div class="field form-group">
+                    <%= label_tag :location, nil, class: 'sr-only' %>
+                    <%= f.text_field :location, :required => true, :placeholder => "Where will you be?", class: "form-control"%>
+                  </div>
+                  <div class="field form-group">
+                    <%= label_tag :accommodation, nil, class: 'sr-only' %>
+                    <%= f.text_field :accommodation, :required => true, :placeholder => "Where will you sleep?", class: "form-control" %>
+                  </div>
+                  <div class="field form-group">
+                    <%= label_tag :activity, nil, class: 'sr-only' %>
+                    <%= f.text_field :activity, :required => true, :placeholder => "What are you going to do?", class: "form-control" %>
+                  </div>
+                  <div class="field form-group">
+                    <%= label_tag :note, "Add Notes", class: "text-left" %>
+                    <%= f.text_field :note, class: "form-control" %>
+                  </div>
+
+                  <br><br>
+                  <div class="actions"><%= f.submit 'Add Day', class: "btn" %></div>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="timeline">
+        <% @trip.days.each do |d| %>
+            <li>
+              <div class="timeline-badge primary"></div>
+              <div class="timeline-panel">
+                <!-- <div class="timeline-heading"> -->
+                  <span><h4 class="timeline-title">Day #<%= d.number %> &nbsp; | &nbsp; <span><%= d.date.strftime("%m/%d/%Y") %></span></h4></span>
+                  <hr>
+                  <p><strong>Location:</strong> <%= d.location %></p>
+                  <p><strong>Sleeping Arrangements:</strong> <%= d.accommodation %></p>
+                <!-- </div> -->
+                <div class="timeline-body">
+                  <p><strong>Activities:</strong> <%= d.activity %></p>
+                  <p><strong>Notes:</strong> <%= d.note %></p>
+                  <br>
+
+                  <%= link_to "Edit", edit_day_path(d), class: "blck-link" %> |
+                  <%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' }, class: "blck-link" %>
+                  <br>
                 </div>
               </div>
+            </li>
+        <% end %>
+      </ul>
 
-
-    </div>
-    <ul class="timeline">
-
-      <% @trip.days.each do |d| %>
-
-        <li>
-          <div class="timeline-badge"></div>
-          <div class="timeline-panel">
-            <!-- <div class="timeline-heading"> -->
-              <span><h4 class="timeline-title">Day #<%= d.number %> &nbsp; | &nbsp; <span><%= d.date.strftime("%m/%d/%Y") %><span></h4></span>
-              <p><strong>Location:</strong> <%= d.location %></p>
-              <p><strong>Sleeping Arrangements:</strong> <%= d.accommodation %></p>
-            <!-- </div> -->
-            <!-- <div class="timeline-body"> -->
-              <p><strong>Activities:</strong> <%= d.activity %></p>
-              <p><strong>Notes:</strong> <%= d.note %></p>
-              <br>
-
-              <%= link_to "Edit", edit_day_path(d) %> |
-              <%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' } %>
-              <br>
-            <!-- </div> -->
-          </div>
-        </li>
-
-      <% end %>
-
-
-
-
-    </ul>
-</div>
-</div>
+  </div>
 </div>

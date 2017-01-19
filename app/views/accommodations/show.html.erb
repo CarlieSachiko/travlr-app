@@ -6,13 +6,26 @@
     <div id="notice"><%= notice %></div>
   </div>
 
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Bucket List", user_cities_path(current_user) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @accommodation.city.name, city_path(@accommodation.city) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @accommodation.name, accommodation_path(@accommodation) %></span>
+    </div>
+  </div>
+
+<div class="container">
 <h4><%= @accommodation.name %></h4>
 <h4><%= @accommodation.address %></h4>
 
 
   <%= link_to "Edit", edit_accommodation_path %> |
   <%= link_to "Delete", accommodation_path(@accommodation), method: :delete, data: { confirm: 'Are you sure???' } %>
-
+</div>
 
 
 

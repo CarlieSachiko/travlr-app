@@ -1,44 +1,61 @@
 <div class="profile">
-<div class="jumbotron text-center"><h4>Edit Day</h4></div>
-<div class="container">
-<%= form_for @day do |f| %>
-  <% if @day.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @day.errorsfull_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field form-group">
-    <%= label_tag :number, "Day #" %>
-    <%= f.number_field :number, :required => true, :placeholder => "Day Number" %>
-  </div>
-  <div class="field form-group">
-    <%= label_tag :date, nil, class: 'sr-only' %>
-    <%= f.date_field :date, :required => true, :placeholder => "Date" %>
-  </div>
-  <div class="field form-group">
-    <%= label_tag :location, nil, class: 'sr-only' %>
-    <%= f.text_field :location, :required => true, :placeholder => "Where will you be?", class: "form-control"%>
-  </div>
-  <div class="field form-group">
-    <%= label_tag :accommodation, nil, class: 'sr-only' %>
-    <%= f.text_field :accommodation, :required => true, :placeholder => "Where will you sleep?", class: "form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= label_tag :activity, nil, class: 'sr-only' %>
-    <%= f.text_field :activity, :required => true, :placeholder => "What are you going to do?", class: "form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= label_tag :note, "Add Notes", class: "text-left" %>
-    <%= text_area_tag :note, nil, class: "form-control" %>
+  <div class="jumbotron text-center">
+    <h4>Edit Day</h4>
   </div>
 
-  <br><br>
-  <div class="actions"><%= f.submit 'Save' %></div>
-<% end %>
-</div>
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Trips", trips_path(current_user) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to @trip.name, trip_path(@day.trip_id) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "Edit", edit_day_path(@day) %>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <%= form_for @day do |f| %>
+      <% if @day.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @day.errorsfull_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field form-group">
+        <%= label_tag :number, "Day #" %>
+        <%= f.number_field :number, :required => true, :placeholder => "Day Number" %>
+      </div>
+      <div class="field form-group">
+        <%= label_tag :date, nil, class: 'sr-only' %>
+        <%= f.date_field :date, :required => true, :placeholder => "Date" %>
+      </div>
+      <div class="field form-group">
+        <%= label_tag :location, nil, class: 'sr-only' %>
+        <%= f.text_field :location, :required => true, :placeholder => "Where will you be?", class: "form-control"%>
+      </div>
+      <div class="field form-group">
+        <%= label_tag :accommodation, nil, class: 'sr-only' %>
+        <%= f.text_field :accommodation, :required => true, :placeholder => "Where will you sleep?", class: "form-control" %>
+      </div>
+      <div class="field form-group">
+        <%= label_tag :activity, nil, class: 'sr-only' %>
+        <%= f.text_field :activity, :required => true, :placeholder => "What are you going to do?", class: "form-control" %>
+      </div>
+      <div class="field form-group">
+        <%= label_tag :note, "Add Notes", class: "text-left" %>
+        <%= f.text_field :note, class: "form-control" %>
+      </div>
+
+      <br><br>
+      <div class="actions"><%= f.submit 'Save', class: "btn" %></div>
+    <% end %>
+
+  </div>
 </div>

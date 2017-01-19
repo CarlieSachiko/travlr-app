@@ -1,8 +1,7 @@
 <div class="profile">
   <div class="jumbotron text-center">
-    <h2>My Bucket List</h2>
-    <h3><%= @city.name %>, <%= @city.country %></h3>
-    <%= link_to "Back", user_cities_path(current_user) %> |
+    <h2>MY BUCKET LIST</h2>
+    <h3><%= @city.name.upcase %>, <%= @city.country.upcase %></h3>
     <a type="button" data-toggle="modal" data-target="#editModal">Edit</a> |
     <%= link_to "Delete", @city, method: :delete, data: { confirm: 'Are you sure???' } %>
 
@@ -48,6 +47,16 @@
     <div id="notice"><%= notice %></div>
   </div>
 
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Bucket List", user_cities_path(current_user) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @city.name, city_path(@city) %></span>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row">
 
@@ -87,13 +96,13 @@
                           <%= label_tag :address, nil, class: 'sr-only' %>
                           <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
                         </div>
-                        <div class="field form-group">
+                        <div class="field form-group text-left">
                           <%= label_tag :note, "Add Notes", class: "text-left" %>
-                          <%= text_area_tag :note, nil, class: "form-control" %>
+                          <%= f.text_field :note, class: "form-control" %>
                         </div>
 
                         <br><br>
-                        <div class="actions"><%= f.submit 'Add Accomodation' %></div>
+                        <div class="actions"><%= f.submit 'Add Accomodation', class: "btn" %></div>
                       <% end %>
                     </div>
                     <div class="modal-footer">
@@ -106,7 +115,7 @@
             <ul class="text-left">
               <% @city.accommodations.each do |a| %>
                 <li>
-                  <%= link_to a.name, accommodation_path(a) %>
+                  <%= link_to a.name, accommodation_path(a), class: "blck-link" %>
                 </li>
               <% end %>
             </ul>
@@ -149,13 +158,13 @@
                           <%= label_tag :name, nil, class: 'sr-only' %>
                           <%= f.text_field :name, :required => true, :placeholder => "What is it?", class: "form-control"%>
                         </div>
-                        <div class="field form-group">
+                        <div class="field form-group text-left">
                           <%= label_tag :note, "Add Notes", class: "text-left" %>
-                          <%= text_area_tag :note, nil, class: "form-control" %>
+                          <%= f.text_field :note, class: "form-control"  %>
                         </div>
 
                         <br><br>
-                        <div class="actions"><%= f.submit 'Add Activity' %></div>
+                        <div class="actions"><%= f.submit 'Add Activity', class: "btn" %></div>
                       <% end %>
                     </div>
                     <div class="modal-footer">
@@ -167,7 +176,7 @@
           <% if (@city.activities.count > 0) %>
             <ul class="text-left">
               <% @city.activities.each do |a| %>
-                <li><%= link_to a.name, activity_path(a) %></li>
+                <li><%= link_to a.name, activity_path(a), class: "blck-link" %></li>
               <% end %>
             </ul>
 
@@ -191,7 +200,7 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Add Accomodation</h4>
+                      <h4 class="modal-title">Add Sight</h4>
                     </div>
                     <div class="modal-body">
                       <%= form_for [@city, @sight_new] do |f| %>
@@ -213,13 +222,13 @@
                           <%= label_tag :address, nil, class: 'sr-only' %>
                           <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
                         </div>
-                        <div class="field form-group">
+                        <div class="field form-group text-left">
                           <%= label_tag :note, "Add Notes", class: "text-left" %>
-                          <%= text_area_tag :note, nil, class: "form-control" %>
+                          <%= f.text_field :note, class: "form-control"  %>
                         </div>
 
                         <br><br>
-                        <div class="actions"><%= f.submit 'Add Sight' %></div>
+                        <div class="actions"><%= f.submit 'Add Sight', class: "btn" %></div>
                       <% end %>
                     </div>
                     <div class="modal-footer">
@@ -231,7 +240,7 @@
           <% if (@city.sights.count > 0) %>
             <ul class="text-left">
               <% @city.sights.each do |s| %>
-                <li><%= link_to s.name, sight_path(s) %></li>
+                <li><%= link_to s.name, sight_path(s), class: "blck-link" %></li>
               <% end %>
             </ul>
 
@@ -255,7 +264,7 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Add Accomodation</h4>
+                      <h4 class="modal-title">Add Eatery</h4>
                     </div>
                     <div class="modal-body">
                       <%= form_for [@city, @eatery_new] do |f| %>
@@ -277,13 +286,13 @@
                           <%= label_tag :address, nil, class: 'sr-only' %>
                           <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
                         </div>
-                        <div class="field form-group">
+                        <div class="field form-group text-left">
                           <%= label_tag :note, "Add Notes", class: "text-left" %>
-                          <%= text_area_tag :note, nil, class: "form-control" %>
+                          <%= f.text_field :note, class: "form-control" %>
                         </div>
 
                         <br><br>
-                        <div class="actions"><%= f.submit 'Add Eatery' %></div>
+                        <div class="actions"><%= f.submit 'Add Eatery', class: "btn" %></div>
                       <% end %>
                     </div>
                     <div class="modal-footer">
@@ -295,7 +304,7 @@
           <% if (@city.eateries.count > 0) %>
             <ul class="text-left">
               <% @city.eateries.each do |e| %>
-                <li><%= link_to e.name, eatery_path(e) %></li>
+                <li><%= link_to e.name, eatery_path(e), class: "blck-link" %></li>
               <% end %>
             </ul>
 

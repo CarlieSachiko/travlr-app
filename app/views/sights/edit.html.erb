@@ -1,40 +1,52 @@
 <div class="profile">
   <div class="jumbotron text-center">
-    <h2>My Bucket List</h2>
-    <h3><%= @sight.city.name %>, <%= @sight.city.country %></h3>
-    <%= link_to "Go Back", city_path(@sight.city_id) %>
+    <h2>MY BUCKET LIST</h2>
+    <h3><%= @sight.city.name.upcase %>, <%= @sight.city.country.upcase %></h3>
+    <h4>Edit Sight</h4>
     <div id="notice"><%= notice %></div>
   </div>
 
-  <h4>Edit Sight</h4>
-  <%= form_for @sight do |f| %>
-    <% if @sight.errors.any? %>
-      <div class="error_messages">
-        <h2>Form is invalid</h2>
-        <ul>
-          <% for message in @sight.errorsfull_messages %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Bucket List", user_cities_path(current_user) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @sight.city.name, city_path(@sight.city) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @sight.name, sight_path(@sight) %></span>
+    </div>
+  </div>
+
+  <div class="container">
+    <%= form_for @sight do |f| %>
+      <% if @sight.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @sight.errorsfull_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field form-group">
+        <%= label_tag :name, "Name" %>
+        <%= f.text_field :name, :required => true, :placeholder => "Name", class: "form-control"%>
       </div>
+      <div class="field form-group">
+        <%= label_tag :address, "Address" %>
+        <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
+      </div>
+      <div class="field form-group">
+        <%= label_tag :note, "Add Notes", class: "text-left" %>
+        <%= f.text_field :note, class: "form-control" %>
+      </div>
+
+      <br><br>
+      <div class="actions"><%= f.submit 'Save', class: "btn" %></div>
     <% end %>
-    <div class="field form-group">
-      <%= label_tag :name, nil, class: 'sr-only' %>
-      <%= f.text_field :name, :required => true, :placeholder => "Name", class: "form-control"%>
-    </div>
-    <div class="field form-group">
-      <%= label_tag :address, nil, class: 'sr-only' %>
-      <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
-    </div>
-    <div class="field form-group">
-      <%= label_tag :note, "Add Notes", class: "text-left" %>
-      <%= text_area_tag :note, nil, class: "form-control" %>
-    </div>
-
-    <br><br>
-    <div class="actions"><%= f.submit 'Save' %></div>
-  <% end %>
-
+  </div>
 
 
 

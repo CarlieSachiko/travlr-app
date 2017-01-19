@@ -1,33 +1,31 @@
 <div class="profile">
-  <div class="jumbotron text-center centered">
+  <div class="jumbotron text-center centered" style="background-image: url(<%= @user.banner.url %>)">
     <div id="profile-pic">
-    <% if @user.image? %>
-      <%= image_tag(@user.image.url, height: '300', class: "rounded image-cropper") %>
-    <% else %>
-      <%= image_tag('default_profile.png', height: '300', class: "rounded image-cropper") %>
-    <% end %>
+      <% if @user.image? %>
+        <%= image_tag(@user.image.url, height: '300', class: "rounded image-cropper") %>
+      <% else %>
+        <%= image_tag('default_profile.png', height: '300', class: "rounded image-cropper") %>
+      <% end %>
     </div>
-    <!-- <br> -->
-      <h3><%= @user.name %></h3>
-      <p><%= @user.hometown %></p>
-
+    <h2><%= @user.name %></h2>
+    <p><%= @user.hometown %></p>
   </div>
 
 
-  <div class="container text-center">
+  <div class="container text-center profile-btn">
 
       <div class="row text-center">
 
           <div class="col-md-6 col-sm-12 hero-feature">
             <div class="thumbnail list">
-              <h3><%= link_to 'My Bucket List', user_cities_path(:current_user_id) %></h3>
+              <h3><%= link_to 'MY BUCKET LIST', user_cities_path(:current_user_id) %></h3>
           </div>
 
         </div>
 
           <div class="col-md-6 col-sm-12 hero-feature">
             <div class="thumbnail list">
-                <h3><%= link_to 'My Trips', trips_path %></h3>
+                <h3><%= link_to 'MY TRIPS', trips_path %></h3>
             </div>
           </div>
 
