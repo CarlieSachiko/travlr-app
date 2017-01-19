@@ -1,7 +1,8 @@
 <div class="profile">
   <div class="jumbotron text-center">
     <h1>My Bucket List</h1>
-    <h4>add it. see it. check it off the list.</h4>
+    <h4>add it. see it. check it off the list. increase happiness.</h4>
+    <br>
     <%= form_for [@user, @city_new], :html => {:class => "new_city form-inline"} do |f| %>
       <% if @city_new.errors.any? %>
         <div class="error_messages">
@@ -24,20 +25,22 @@
       <div class="actions form-group btn"><%= f.submit 'Add to List', class: "form-control" %></div>
     <% end %>
 
-    <a href=<%= user_path(current_user)%> ><div class="glyphicon glyphicon-chevron-left"></div>
+    <a href=<%= user_path(current_user)%> ><div class="glyphicon glyphicon-chevron-left"></div></a>
   </div>
 
-<div id="notice"><%= notice %></div>
-<% if (@user.cities.count > 0) %>
-  <ul>
-    <% @user.cities.each do |city| %>
-      <li><%= link_to city.name, city_path(city) %>, <%= city.country %></li>
-    <% end %>
-  </ul>
+  <div class="container">
+    <div id="notice"><%= notice %></div>
+    <% if (@user.cities.count > 0) %>
+      <ul>
+        <% @user.cities.each do |city| %>
+          <li><h3><%= link_to city.name, city_path(city) %>, <%= city.country %></h3></li>
+        <% end %>
+      </ul>
 
-<% else %>
-    <p>You currently don't want to go anywhere. That's sad. You should fix that.</p>
-<% end %>
+    <% else %>
+        <p class="text-center">You currently don't want to go anywhere. That's sad. You should fix that.</p>
+    <% end %>
+  </div>
 
 </div>
 

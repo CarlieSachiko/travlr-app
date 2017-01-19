@@ -3,6 +3,7 @@
 <head>
   <title>Travel App</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Questrial" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,19 +11,27 @@
 <body>
 
   <nav class="navbar navbar-fixed-top" role="navigation">
-    <div class="navbar-header">
+    <!-- <div class="navbar-header"> -->
           <span>
             <div class="glyphicon glyphicon-globe"></div></a>
           </span>
-    </div>
+    <!-- </div> -->
      <div class="dropdown pull-right profile-pic">
-    <%= link_to user_path(current_user), :id => "dLabel", :class => "dropdown-toggle", :data => {:toggle => "dropdown"}, :role => "button", :aria => {:expanded => "false"} do %>
-        <%= image_tag(current_user.image.url, height: '50', class: "rounded profile-image-cropper") %>
-    <% end %>
+      <% if current_user.image? %>
+        <%= link_to user_path(current_user), :id => "dLabel", :class => "dropdown-toggle pull-right", :data => {:toggle => "dropdown"}, :role => "button", :aria => {:expanded => "false"} do %>
+          <%= image_tag(current_user.image.url, height: '50', class: "rounded profile-image-cropper") %>
+        <% end %>
+      <% else %>
+        <%= link_to user_path(current_user), :id => "dLabel", :class => "dropdown-toggle pull-right", :data => {:toggle => "dropdown"}, :role => "button", :aria => {:expanded => "false"} do %>
+          <%= image_tag('default_profile.png', height: '50', class: "rounded profile-image-cropper") %>
+        <% end %>
+      <% end %>
       <ul class="dropdown-menu" aria-labelledby="dLabel" role="menu">
-        <li><span class="glyphicon glyphicon-home"></span><span><%= link_to 'Home', user_path(current_user) %></span></li>
+        <li><%= link_to 'Home', user_path(current_user) %></li>
         <li><%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>
         <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+        <li><%= link_to 'My Bucket List', user_cities_path(:current_user_id) %></li>
+        <li><%= link_to 'My Trips', trips_path %></li>
       </ul>
     </div>
   </nav>

@@ -1,6 +1,12 @@
 <div class="profile">
   <div class="jumbotron text-center centered">
-    <div id="profile-pic"><%= image_tag(@user.image.url, height: '300', class: "rounded image-cropper") %></div>
+    <div id="profile-pic">
+    <% if @user.image? %>
+      <%= image_tag(@user.image.url, height: '300', class: "rounded image-cropper") %>
+    <% else %>
+      <%= image_tag('default_profile.png', height: '300', class: "rounded image-cropper") %>
+    <% end %>
+    </div>
     <!-- <br> -->
       <h3><%= @user.name %></h3>
       <p><%= @user.hometown %></p>
@@ -14,14 +20,14 @@
 
           <div class="col-md-6 col-sm-12 hero-feature">
             <div class="thumbnail list">
-              <h4><%= link_to 'My Bucket List', user_cities_path(:current_user_id) %></h4>
+              <h3><%= link_to 'My Bucket List', user_cities_path(:current_user_id) %></h3>
           </div>
 
         </div>
 
           <div class="col-md-6 col-sm-12 hero-feature">
             <div class="thumbnail list">
-                <h4><%= link_to 'My Trips', trips_path %></h4>
+                <h3><%= link_to 'My Trips', trips_path %></h3>
             </div>
           </div>
 

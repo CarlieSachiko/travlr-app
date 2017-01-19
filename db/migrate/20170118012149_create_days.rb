@@ -6,7 +6,8 @@ class CreateDays < ActiveRecord::Migration
       t.string :location
       t.string :note
       t.string :accommodation
-      t.string :activities
+      t.string :activity
+      t.date :date
 
       t.timestamps null: false
     end

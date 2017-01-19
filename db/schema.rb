@@ -53,7 +53,8 @@ ActiveRecord::Schema.define(version: 20170118012149) do
     t.string   "location"
     t.string   "note"
     t.string   "accommodation"
-    t.string   "activities"
+    t.string   "activity"
+    t.date     "date"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -87,8 +88,12 @@ ActiveRecord::Schema.define(version: 20170118012149) do
     t.date     "startdate"
     t.date     "enddate"
     t.string   "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "user_id"
   end
 

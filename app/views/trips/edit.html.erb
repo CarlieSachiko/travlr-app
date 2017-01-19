@@ -1,31 +1,68 @@
 <div class="profile">
   <div class="jumbotron text-center">
-    <h1><%= @trip.name %></h1>
-    <%= link_to 'Back to My Trips', trips_path %>
+    <h3>Edit <%= @trip.name %></h3>
+    <div id="notice"><%= notice %></div>
+    <%= link_to 'Back to Trip', trip_path(@trip) %>
   </div>
-<h3>Edit Trip</h3>
+  <div class="container">
+
+<!-- Modal Trigger -->
+          <button type="button" class="btn" data-toggle="modal" data-target="#inviteModal">
+                  Invite Travellers
+          </button>
+          <!-- Modal  -->
+          <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Invite Traveller</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <%= form_for [@trip, @user_trip] do |f| %>
+                                <%= f.collection_select(:user_id, @users, :id, :name) %>
+                                <%= f.submit "Add Traveller", class: "btn btn-default" %>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+<br>&nbsp;
 
 <%= form_for @trip do |f| %>
-    <div>
-        <%= f.label :name, nil, class: 'sr-only' %>
-        <%= f.text_field :name, :placeholder => "Trip Name" %>
+    <div class="field form-group">
+        <%= f.label :name, "Trip Name" %>
+        <%= f.text_field :name, :placeholder => "Trip Name", class: "form-control" %>
     </div>
-    <div>
-        <%= f.label :country, nil, class: 'sr-only' %>
-        <%= f.text_field :country, :placeholder => "Country" %>
+    <div class="field form-group">
+        <%= f.label :country, "Location" %>
+        <%= f.text_field :country, :placeholder => "Country", class: "form-control" %>
     </div>
-    <div>
+    <div class="field form-group">
         <%= f.label :startdate, "Start Date"%><br>
-        <%= f.date_field :startdate, :placeholder => "Start Date" %>
+        <%= f.date_field :startdate, :placeholder => "Start Date", class: "form-control" %>
     </div>
-    <div>
+    <div class="field form-group">
         <%= f.label :enddate, "End Date" %><br>
-        <%= f.date_field :enddate, :placeholder => "End Date" %>
+        <%= f.date_field :enddate, :placeholder => "End Date", class: "form-control" %>
     </div>
+    <div class="field">
+        <%= f.label :image, "Image", class: 'sr-only' %>
+        <%= f.file_field :image %>
+    </div><br><br>
     <%= f.submit "Save", class: "btn btn-default" %>
 <% end %>
+<br>&nbsp;
+<br>&nbsp;
 
 
-<%= link_to "Back", trip_path(@trip) %>
 
+</div>
 </div>

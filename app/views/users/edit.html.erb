@@ -1,5 +1,11 @@
-<div class="container">
+<div class="profile">
+<div class="jumbotron text-center centered">
   <h1>Edit Your Profile</h1>
+    <%= link_to "Back", user_path(current_user) %>
+
+</div>
+
+<div class="container">
  <%= form_for @user do |f| %>
     <% if @user.errors.any? %>
       <div class="error_messages">
@@ -11,22 +17,25 @@
         </ul>
       </div>
     <% end %>
-    <div class="field">
+    <div class="field form-group">
       <%= f.label :name %>
-      <%= f.text_field :name, :required => true %>
+      <%= f.text_field :name, :required => true, class: "form-control" %>
     </div>
-    <div class="field">
+    <div class="field form-group">
       <%= f.label :email %>
-      <%= f.email_field :email, :required => true %>
+      <%= f.email_field :email, :required => true, class: "form-control" %>
     </div>
-    <div class="field">
+    <div class="field form-group">
       <%= f.label :hometown %>
-      <%= f.text_field :hometown %>
+      <%= f.text_field :hometown, class: "form-control" %>
     </div>
-    <div>
+    <div class="field form-group">
+      <%= f.label :image, "Profile Picture" %>
       <%= f.file_field :image %>
     </div>
-    <div class="actions"><%= f.submit "Save" %></div>
+    <div class="actions"><%= f.submit "Save", class: "btn"%></div>
   <% end %>
-  <%= link_to "Back", user_path(current_user) %>
+
+</div>
+
 </div>

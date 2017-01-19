@@ -20,8 +20,14 @@
 @import "bootstrap";
 
 div.home-page {
+
   body.homebody {
     padding-top: 0 !important;
+  }
+
+  nav.navbar.navbar-fixed-top {
+    background-color: none !important;
+    color: white;
   }
   /** {
     color: white;
@@ -50,10 +56,10 @@ div.home-page {
 
   div.section {
     /*color: white;*/
-    height:100vh;
+    height: 100vh;
     background-image: image-url("IMG_8794.JPG");
-    background-size:     cover;
-    background-repeat:   no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center center;
   }
 

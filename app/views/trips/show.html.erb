@@ -1,27 +1,38 @@
-<div class="profile">
-  <div class="jumbotron text-center">
-    <h1><%= @trip.name %></h1>
+<div class="profile trip-show">
+  <div class="jumbotron text-center" style="background-image: url(<%= @trip.image.url %>)" >
+    <h1><%= @trip.name.upcase %></h1>
     <h4 class="text-center"><%= @trip.startdate.to_formatted_s(:long) %> - <%= @trip.enddate.to_formatted_s(:long) %></h4>
     <h3><%= @trip.country %></h3>
     <div id="notice"><%= notice %></div>
-    <%= link_to 'Back to My Trips', trips_path %>
+    <div>
+     <%= link_to 'Back to My Trips', trips_path %> |
+    <%= link_to "Edit", edit_trip_path %> |
+    <%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' } %>
+  </div>
   </div>
 
-
-
+  <div class="container">
+  <span>Invited Travellers: </span>
   <% @invited_users.each do |u| %>
+    <span>
+    <% if u.image? %>
+      <%= image_tag(u.image.url, height: '50', class: "rounded profile-image-cropper") %>
+    <% else %>
+      <%= image_tag('default_profile.png', height: '50', class: "rounded profile-image-cropper") %>
+    <% end %>
     <%= u.name %>
+    <%= link_to "x", user_trip_path(:user_id => u.id), method: :delete, data: { confirm: 'Are you sure???' } %>
+    </span>
+    &nbsp;
   <% end %>
   <hr>
 
-  <%= link_to "Invite Travellers", new_trip_user_trip_path(@trip) %> |
-  <%= link_to "Back", trips_path(current_user) %> |
-  <%= link_to "Edit", edit_trip_path %> |
-  <%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' } %>
+
+  </div>
 
   <div class="container">
     <div class="page-header">
-        <h1 id="timeline">Itinerary</h1>
+        <span><h1 id="timeline">Itinerary</h1></span>
         <!-- Modal Trigger -->
           <button type="button" class="btn" data-toggle="modal" data-target="#dayModal">
                   Add Day
@@ -51,16 +62,20 @@
                           <%= f.number_field :number, :required => true, :placeholder => "Day Number" %>
                         </div>
                         <div class="field form-group">
+                          <%= label_tag :date, nil, class: 'sr-only' %>
+                          <%= f.date_field :date, :required => true, :placeholder => "Date" %>
+                        </div>
+                        <div class="field form-group">
                           <%= label_tag :location, nil, class: 'sr-only' %>
-                          <%= f.text_field :location, :required => true, :placeholder => "Location", class: "form-control"%>
+                          <%= f.text_field :location, :required => true, :placeholder => "Where will you be?", class: "form-control"%>
                         </div>
                         <div class="field form-group">
                           <%= label_tag :accommodation, nil, class: 'sr-only' %>
-                          <%= f.text_field :accommodation, :required => true, :placeholder => "Where are you sleeping?", class: "form-control" %>
+                          <%= f.text_field :accommodation, :required => true, :placeholder => "Where will you sleep?", class: "form-control" %>
                         </div>
                         <div class="field form-group">
-                          <%= label_tag :activities, nil, class: 'sr-only' %>
-                          <%= f.text_field :activities, :required => true, :placeholder => "What are you doing?", class: "form-control" %>
+                          <%= label_tag :activity, nil, class: 'sr-only' %>
+                          <%= f.text_field :activity, :required => true, :placeholder => "What are you going to do?", class: "form-control" %>
                         </div>
                         <div class="field form-group">
                           <%= label_tag :note, "Add Notes", class: "text-left" %>
@@ -68,7 +83,7 @@
                         </div>
 
                         <br><br>
-                        <div class="actions"><%= f.submit 'Add Accomodation' %></div>
+                        <div class="actions"><%= f.submit 'Add Day' %></div>
                       <% end %>
                     </div>
                     <div class="modal-footer">
@@ -84,96 +99,30 @@
 
       <% @trip.days.each do |d| %>
 
-        <li><div class="timeline-badge"></div>
+        <li>
+          <div class="timeline-badge"></div>
           <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Day <%= d.number %></h4>
-              <p>Location: <%= d.location %></p>
-              <p>Sleeping Arrangements: <%= d.accommodation %></p>
-            </div>
-            <div class="timeline-body">
-              <p>What we are doing: <%= d.activities %></p>
-              <p>Notes: <%= d.activities %></p>
-              <%= link_to "Edit", edit_day_path %> |
+            <!-- <div class="timeline-heading"> -->
+              <span><h4 class="timeline-title">Day #<%= d.number %> &nbsp; | &nbsp; <span><%= d.date.strftime("%m/%d/%Y") %><span></h4></span>
+              <p><strong>Location:</strong> <%= d.location %></p>
+              <p><strong>Sleeping Arrangements:</strong> <%= d.accommodation %></p>
+            <!-- </div> -->
+            <!-- <div class="timeline-body"> -->
+              <p><strong>Activities:</strong> <%= d.activity %></p>
+              <p><strong>Notes:</strong> <%= d.note %></p>
+              <br>
+
+              <%= link_to "Edit", edit_day_path(d) %> |
               <%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' } %>
-            </div>
+              <br>
+            <!-- </div> -->
           </div>
         </li>
 
       <% end %>
 
 
-        <li class="timeline-inverted">
-          <div class="timeline-badge "></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-            </div>
-          </div>
-        </li>
 
-        <li>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-            </div>
-          </div>
-        </li>
-
-        <li class="timeline-inverted">
-          <div class="timeline-badge"></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-              <hr>
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                  <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="timeline-badge"></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-            </div>
-          </div>
-        </li>
-
-        <li class="timeline-inverted">
-          <div class="timeline-badge"></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-            </div>
-          </div>
-        </li>
 
     </ul>
 </div>
