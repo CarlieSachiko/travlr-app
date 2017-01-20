@@ -107,8 +107,7 @@ div.profile{
     background-size: cover;
     margin-bottom: 0;
     color: white;
-    // background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
-  }
+   }
 
   div.profile-btn {
     margin-top: 40px;
@@ -121,7 +120,7 @@ div.profile{
   .list {
     height: 80px;
     vertical-align: middle;
-    background-color: #005566;
+    background-color: #007991;
 
     h3 {
       letter-spacing: 4px;
@@ -312,18 +311,6 @@ div.trip-show {
   }
   .timeline-badge.primary {
     background-color: #068B78 !important;
-  }
-  .timeline-badge.success {
-    background-color: #3f903f !important;
-  }
-  .timeline-badge.warning {
-    background-color: #f0ad4e !important;
-  }
-  .timeline-badge.danger {
-    background-color: #d9534f !important;
-  }
-  .timeline-badge.info {
-    background-color: #5bc0de !important;
   }
   .timeline-title {
     margin-top: 0;

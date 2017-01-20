@@ -12,49 +12,49 @@
       <%= link_to "", @city, method: :delete, data: { confirm: 'Are you sure???' }, class: "glyphicon glyphicon-trash sm-glyphicon" %>
     </div>
 
-          <!-- Modal  -->
-          <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Edit</h4>
-                    </div>
-                    <div class="modal-body">
-                      <%= form_for @city do |f| %>
-                        <% if @city.errors.any? %>
-                          <div class="error_messages">
-                            <h2>Form is invalid</h2>
-                            <ul>
-                              <% for message in @city.errorsfull_messages %>
-                                <li><%= message %></li>
-                              <% end %>
-                            </ul>
-                          </div>
-                        <% end %>
-                        <div class="field form-group text-left">
-                          <%= label_tag :name, "Name" %>
-                          <%= f.text_field :name, :required => true, :placeholder => "City Name", class: "form-control"%>
-                        </div>
-                        <div class="field form-group text-left">
-                          <%= label_tag :country, "Country" %>
-                          <%= f.text_field :country, :required => true, :placeholder => "Country", class: "form-control" %>
-                        </div>
-                        <div class="field form-group text-left">
-                          <%= label_tag :done, "Did it? Check it." %> &nbsp;
-                          <%= f.check_box :done %>
-                        </div>
-                        <div class="actions form-group btn">
-                          <%= f.submit 'Save', class: "form-control" %>
-                        </div>
-                      <% end %>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
+    <!-- Modal  -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit</h4>
               </div>
+              <div class="modal-body">
+                <%= form_for @city do |f| %>
+                  <% if @city.errors.any? %>
+                    <div class="error_messages">
+                      <h2>Form is invalid</h2>
+                      <ul>
+                        <% for message in @city.errorsfull_messages %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field form-group text-left">
+                    <%= label_tag :name, "Name" %>
+                    <%= f.text_field :name, :required => true, :placeholder => "City Name", class: "form-control"%>
+                  </div>
+                  <div class="field form-group text-left">
+                    <%= label_tag :country, "Country" %>
+                    <%= f.text_field :country, :required => true, :placeholder => "Country", class: "form-control" %>
+                  </div>
+                  <!-- <div class="field form-group text-left">
+                    <%#= label_tag :done, "Did it? Check it." %> &nbsp;
+                    <%#= f.check_box :done %>
+                  </div> -->
+                  <div class="actions form-group btn">
+                    <%= f.submit 'Save', class: "form-control" %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
     <div id="notice"><%= notice %></div>
   </div>
 

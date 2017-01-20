@@ -3,7 +3,6 @@
     <h1><%= @trip.name.upcase %></h1>
     <h4 class="text-center"><%= @trip.startdate.to_formatted_s(:long) %> - <%= @trip.enddate.to_formatted_s(:long) %></h4>
     <h3><%= @trip.country %></h3>
-    <div id="notice"><%#= notice %></div>
     <div>
       <%= link_to "", edit_trip_path, class: "glyphicon glyphicon-pencil sm-glyphicon" %> &nbsp;&nbsp;|
       <%= link_to "", @trip, method: :delete, data: { confirm: 'Are you sure???' }, class: "glyphicon glyphicon-trash sm-glyphicon" %>
