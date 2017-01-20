@@ -20,7 +20,7 @@
 @import "bootstrap";
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .profile-image-cropper {
@@ -54,6 +54,10 @@ span.glyphicon {
   font-size: 10px;
 }
 
+.glyphicon-ok.blck:before {
+  color: black;
+}
+
 div.modal {
   color:black;
 }
@@ -77,6 +81,10 @@ div.progressbar {
   background-color: white;
   color: #555555;
 }
+
+.glyphicon.sm-glyphicon{
+    font-size: 15px;
+  }
 
 div.profile{
 
@@ -142,100 +150,6 @@ div.profile{
     position: relative;
     transform: translateX(-50%);
   }
-
-.section {
-  text-align: center;
-  height: 100%;
-  margin: 0 auto;
-  padding: 6em 0; }
-  .section__title {
-    font-size: 1.1em;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    color: #fff;
-    margin-bottom: 3em; }
-  .section--aava {
-    background: #2994B2; }
-  .section--tuuli {
-    background: #474744; }
-  .section--vesi {
-    background: #54567A; }
-  .section--sade {
-    background: #2D4659; }
-  .section--ilma {
-    background: #095062; }
-  .section--tuli {
-    background: #068B78; }
-
-.toggle-button {
-  margin: 0 20px;
-}
-
-.toggle-button {
-  position: relative;
-  display: inline-block;
-  color: #fff;
-}
-
-.toggle-button label {
-  display: inline-block;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-align: left;
-}
-.toggle-button input {
-  display: none; }
-.toggle-button__icon {
-  cursor: pointer;
-  pointer-events: none; }
-.toggle-button__icon:before, .toggle-button__icon:after {
-  content: "";
-  position: absolute;
-  top: 45%;
-  left: 35%;
-  transition: 0.2s ease-out; }
-
-.toggle-button--tuli label {
-  line-height: 20px;
-  text-indent: 30px; }
-
-.toggle-button--tuli input[type=checkbox]:checked ~ .toggle-button__icon {
-  background: #fff; }
-  .toggle-button--tuli input[type=checkbox]:checked ~ .toggle-button__icon:before, .toggle-button--tuli input[type=checkbox]:checked ~ .toggle-button__icon:after {
-    opacity: 1; }
-
-.toggle-button--tuli .toggle-button__icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  transition: all 0.2s;
-  border: 2px solid #fff;
-  border-radius: 1px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); }
-  .toggle-button--tuli .toggle-button__icon:before, .toggle-button--tuli .toggle-button__icon:after {
-    top: 5px;
-    left: 2px;
-    width: 12px;
-    height: 2px;
-    border-radius: 3px;
-    background: #fff;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    top: 35%;
-    background: #61B136;
-    opacity: 0;
-    transform-origin: left center; }
-  .toggle-button--tuli .toggle-button__icon:before {
-    transform: translate(0, 0) rotate(45deg) scale(0.6, 1); }
-  .toggle-button--tuli .toggle-button__icon:after {
-    transform: translate(4px, 6px) rotate(-45deg); }
-
-.toggle-button--tuli:hover input[type=checkbox]:not(:checked) ~ .toggle-button__icon {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
-
 }
 
 p.trip-info, a.trip-info, a.trip-info:hover {

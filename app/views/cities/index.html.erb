@@ -22,7 +22,7 @@
         <%= label_tag :country, nil, class: 'sr-only' %>
         <%= f.text_field :country, :required => true, :placeholder => "Country", class: "form-control" %>
       </div>
-      <div class="actions form-group btn"><%= f.submit 'Add to List', class: "form-control" %></div>
+      <div class="actions form-group"><%= f.submit 'Add to List', class: "form-control btn btn-inverse" %></div>
     <% end %>
   </div>
 
@@ -39,7 +39,14 @@
     <% if (@user.cities.count > 0) %>
       <ul>
         <% @user.cities.each do |city| %>
-          <li><h3 class="blck-link"><%= link_to city.name, city_path(city) %>, <%= city.country %></h3></li>
+          <li>
+            <h3 class="blck-link">
+            <%= link_to city.name, city_path(city) %>, <%= city.country %>
+            <% if city.done %>
+              <span class="glyphicon glyphicon-ok blck"></span>
+            <% end %>
+            </h3>
+          </li>
         <% end %>
       </ul>
 
@@ -50,7 +57,7 @@
 
 
 
- <section class="section section--tuli">
+<!--  <section class="section section--tuli">
             <h2 class="section__title">
                 Tuli
             </h2>
@@ -64,7 +71,7 @@
                 <label for="toggleButton12">Agree that</label>
                 <div class="toggle-button__icon"></div>
             </div>
-        </section>
+        </section> -->
 
 </div>
 

@@ -4,6 +4,7 @@ class CreateCities < ActiveRecord::Migration
       t.string :name
       t.string :country
       t.references :user, index: true, foreign_key: true
+      t.boolean :done
 
       t.timestamps null: false
     end

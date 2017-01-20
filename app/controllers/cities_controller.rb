@@ -44,7 +44,7 @@ class CitiesController < ApplicationController
   private
 
   def c_params
-    params.require(:city).permit(:name, :country)
+    params.require(:city).permit(:name, :country, :done)
   end
 
 

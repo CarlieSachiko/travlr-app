@@ -39,13 +39,9 @@ div.home-page {
   header.section {
     color: white;
     height: 100vh;
-    // background-image: image-url("IMG_8794.JPG");
-    // background: url(<%= randomized_background_image %>) no-repeat center center fixed;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-
-    // opacity: 0.5;
   }
 
   div.container {
@@ -115,7 +111,16 @@ div.home-page {
   :-ms-input-placeholder {
      color: white;
   }
+
+  div.about-me {
+    width: 50%;
+    margin: auto;
   }
+
+  span.glyphicon.blck:before {
+    color: #555555;
+  }
+}
 
 
 

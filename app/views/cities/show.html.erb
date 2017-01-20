@@ -1,9 +1,16 @@
 <div class="profile">
   <div class="jumbotron text-center">
     <h2>MY BUCKET LIST</h2>
-    <h3><%= @city.name.upcase %>, <%= @city.country.upcase %></h3>
-    <a type="button" data-toggle="modal" data-target="#editModal">Edit</a> |
-    <%= link_to "Delete", @city, method: :delete, data: { confirm: 'Are you sure???' } %>
+    <h3>
+      <%= @city.name.upcase %>, <%= @city.country.upcase %>
+      <% if @city.done %>
+        <span class="glyphicon glyphicon-ok"></span>
+      <% end %>
+    </h3>
+    <div>
+      <a type="button" data-toggle="modal" data-target="#editModal" class="glyphicon glyphicon-pencil sm-glyphicon"></a> &nbsp;&nbsp;|
+      <%= link_to "", @city, method: :delete, data: { confirm: 'Are you sure???' }, class: "glyphicon glyphicon-trash sm-glyphicon" %>
+    </div>
 
           <!-- Modal  -->
           <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -25,16 +32,20 @@
                             </ul>
                           </div>
                         <% end %>
-                        <div class="field form-group">
-                          <%= label_tag :name, nil, class: 'sr-only' %>
+                        <div class="field form-group text-left">
+                          <%= label_tag :name, "Name" %>
                           <%= f.text_field :name, :required => true, :placeholder => "City Name", class: "form-control"%>
                         </div>
-                        <div class="field form-group">
-                          <%= label_tag :country, nil, class: 'sr-only' %>
+                        <div class="field form-group text-left">
+                          <%= label_tag :country, "Country" %>
                           <%= f.text_field :country, :required => true, :placeholder => "Country", class: "form-control" %>
                         </div>
+                        <div class="field form-group text-left">
+                          <%= label_tag :done, "Did it? Check it." %> &nbsp;
+                          <%= f.check_box :done %>
+                        </div>
                         <div class="actions form-group btn">
-                        <%= f.submit 'Save', class: "form-control" %>
+                          <%= f.submit 'Save', class: "form-control" %>
                         </div>
                       <% end %>
                     </div>
