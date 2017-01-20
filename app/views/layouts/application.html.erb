@@ -11,12 +11,10 @@
 <body>
 
   <nav class="navbar navbar-fixed-top" role="navigation">
-    <!-- <div class="navbar-header"> -->
-          <span>
-            <div class="glyphicon glyphicon-globe"></div></a>
-          </span>
-    <!-- </div> -->
-     <div class="dropdown pull-right profile-pic">
+    <span>
+      <div class="glyphicon glyphicon-globe"></div></a>
+    </span>
+    <div class="dropdown pull-right profile-pic">
       <% if current_user.image? %>
         <%= link_to user_path(current_user), :id => "dLabel", :class => "dropdown-toggle pull-right", :data => {:toggle => "dropdown"}, :role => "button", :aria => {:expanded => "false"} do %>
           <%= image_tag(current_user.image.url, height: '50', class: "rounded profile-image-cropper") %>
