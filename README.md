@@ -6,7 +6,7 @@ I created this app as a tool to accomplish you bucket list! Each user has a buck
 
 --------
 ###Technologies Used
-For this game I used:
+For this app I used:
 * HTML
 * CSS
 * Ruby on Rails
