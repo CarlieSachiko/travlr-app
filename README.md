@@ -24,7 +24,6 @@ Follow the link below to start!
 ###Unsolved Problems
 * Required password length
 * Rotating background images on my home page
-* Banner image on user profile
 * Days don't appear in chronological order
 
 --------
