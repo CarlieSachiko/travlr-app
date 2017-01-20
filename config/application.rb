@@ -1,6 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
 require "rails"
 # Pick the frameworks you want:
