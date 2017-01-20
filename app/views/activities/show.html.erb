@@ -1,17 +1,30 @@
 <div class="profile">
   <div class="jumbotron text-center">
-    <h2>My Bucket List</h2>
-    <h3><%= @activity.city.name %>, <%= @activity.city.country %></h3>
-    <%= link_to "Go Back", city_path(@activity.city_id) %>
+    <h2>MY BUCKET LIST</h2>
+    <h3><%= @activity.city.name.upcase %>, <%= @activity.city.country.upcase %></h3>
     <div id="notice"><%= notice %></div>
   </div>
 
-<h4><%= @activity.name %></h4>
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Bucket List", user_cities_path(current_user) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @activity.city.name, city_path(@activity.city) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @activity.name, activity_path(@activity) %></span>
+    </div>
+  </div>
 
-
-
-  <%= link_to "Edit", edit_activity_path %> |
-  <%= link_to "Delete", activity_path(@activity), method: :delete, data: { confirm: 'Are you sure???' } %>
+  <div class="container">
+    <h4><%= @activity.name %></h4>
+    <h4>Notes:</h4>
+    <p><%= @activity.note %><p>
+    <br>
+    <%= link_to "Edit", edit_activity_path, class: "blck-link" %> |
+    <%= link_to "Delete", activity_path(@activity), method: :delete, data: { confirm: 'Are you sure???' }, class: "blck-link" %>
+  </div>
 
 
 

@@ -20,7 +20,7 @@
 @import "bootstrap";
 
 * {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .profile-image-cropper {
@@ -66,6 +66,16 @@ div.progressbar {
   a, .glyphicon {
     color: white
   }
+}
+
+.btn-inverse {
+  background-color: transparent;
+  border: white 2px solid !important;
+}
+
+.btn-inverse:hover {
+  background-color: white;
+  color: #555555;
 }
 
 div.profile{
@@ -240,6 +250,10 @@ div.trip-bckgrnd {
    background-color: #C1C1C1;
    height: 160px;
    background-size: cover;
+}
+
+div.trip-bckgrnd:hover {
+  opacity: 0.5;
 }
 
 div.trip-show {

@@ -1,12 +1,26 @@
 <div class="profile">
   <div class="jumbotron text-center">
-    <h2>My Bucket List</h2>
-    <h3><%= @accommodation.city.name %>, <%= @accommodation.city.country %></h3>
-    <%= link_to "Go Back", city_path(@accommodation.city_id) %>
+    <h2>MY BUCKET LIST</h2>
+    <h3><%= @accommodation.city.name.upcase %>, <%= @accommodation.city.country.upcase %></h3>
+    <h4>Edit Accommodation</h4>
     <div id="notice"><%= notice %></div>
   </div>
 
-  <h4>Edit Accommodation</h4>
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Bucket List", user_cities_path(current_user) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @accommodation.city.name, city_path(@accommodation.city) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @accommodation.name, accommodation_path(@accommodation) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to "Edit", edit_accommodation_path(@accommodation) %></span>
+    </div>
+  </div>
+
+<div class="container">
   <%= form_for @accommodation do |f| %>
     <% if @accommodation.errors.any? %>
       <div class="error_messages">
@@ -19,24 +33,22 @@
       </div>
     <% end %>
     <div class="field form-group">
-      <%= label_tag :name, nil, class: 'sr-only' %>
+      <%= label_tag :name, "Name" %>
       <%= f.text_field :name, :required => true, :placeholder => "Name", class: "form-control"%>
     </div>
     <div class="field form-group">
-      <%= label_tag :address, nil, class: 'sr-only' %>
+      <%= label_tag :address, "Address" %>
       <%= f.text_field :address, :required => true, :placeholder => "Address", class: "form-control" %>
     </div>
     <div class="field form-group">
       <%= label_tag :note, "Add Notes", class: "text-left" %>
-      <%= text_area_tag :note, nil, class: "form-control" %>
+      <%= f.text_field :note, class: "form-control" %>
     </div>
 
     <br><br>
-    <div class="actions"><%= f.submit 'Save' %></div>
+    <div class="actions"><%= f.submit 'Save', class: "btn" %></div>
+
+    </div>
   <% end %>
-
-
-
-
 
 </div>

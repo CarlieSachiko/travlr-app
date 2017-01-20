@@ -5,8 +5,8 @@
     <h3><%= @trip.country %></h3>
     <div id="notice"><%#= notice %></div>
     <div>
-      <%= link_to "Edit", edit_trip_path %> |
-      <%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' } %>
+      <%= link_to "", edit_trip_path, class: "glyphicon glyphicon-pencil" %> |
+      <%= link_to "", @trip, method: :delete, data: { confirm: 'Are you sure???' }, class: "glyphicon glyphicon-trash" %>
     </div>
   </div>
 
@@ -36,7 +36,9 @@
           <%= image_tag('default_profile.png', height: '40', class: "rounded profile-image-cropper sm") %>
         <% end %>
         <%= u.name %>
-        <%= link_to "x", user_trip_path(:user_id => u.id), method: :delete, data: { confirm: 'Are you sure???' }, class: "blck-link" %>
+        <% if @creator == current_user %>
+          <%= link_to raw("&#10005;"), user_trip_path(:user_id => u.id), method: :delete, data: { confirm: 'Are you sure???' }, class: "blck-link" %>
+        <% end %>
       </span>
       &nbsp;
     <% end %>

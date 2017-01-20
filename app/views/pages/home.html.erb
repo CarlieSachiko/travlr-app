@@ -1,46 +1,50 @@
+<style type="text/css">
+  header.section {
+    background: url(<%= randomized_background_image %>) no-repeat center center fixed;
+  }
+</style>
+
 <div class="home-page">
   <nav class="navbar navbar-fixed-top" role="navigation">
-    <!-- <div class="navbar-header"> -->
+    <div class="navbar-header">
          <div class="navbar-header brand">
         <span>
           <div class="glyphicon glyphicon-globe"></div>
         </span>
-      <!-- </div> -->
+      </div>
+    </div>
 
-    <%= form_tag sessions_path, class: 'navbar-form navbar-right' do %>
+    <%= form_tag sessions_path, class: 'navbar-form navbar-right sign-in' do %>
       <div class="field form-group">
         <%= label_tag :email, nil, class: 'sr-only' %>
-        <%= text_field_tag :email, params[:email], :placeholder => "Email", class: "form-control" %>
+        <%= text_field_tag :email, params[:email], :placeholder => "Email", class: "form-control input-login" %>
       </div>
       <div class="field form-group">
         <%= label_tag :password, nil, class: 'sr-only' %>
-        <%= password_field_tag :password, params[:password], :placeholder => "Password", class: "form-control" %>
+        <%= password_field_tag :password, params[:password], :placeholder => "Password", class: "form-control input-login" %>
       </div>
-      <%= submit_tag "Log In", class: "btn btn-default" %>
+      <%= submit_tag "Log In", class: "btn submit-btn" %>
       <p id="alert"><%= alert %></p>
       <% end %>
 
   </nav>
 
-  <div class="container-fluid section">
+  <header class="container-fluid section">
   <br><br><br><br><br>
-   <!--    <span><h1>Log In</h1></span> -->
-
-          <!-- <div>No account? <%#= link_to 'Sign Up!', new_user_path %></div> -->
 
     <div class="row">
 
-        <div class="container text-center col-sm-6 hero-feature">
+        <div class="container text-center col-xs-12 col-sm-6 hero-feature">
             <div class="caption">
             <br><br><br><br><br>
-              <h1>The world isn't waiting,</h1>
-              <h1>so why are you?</h1>
+              <h1 class="home-text">THE WORLD ISN'T WAITING</h1>
+              <h1 class="home-text">SO WHY ARE YOU?</h1>
            </div>
         </div>
 
-        <div class="container col-sm-6 hero-feature">
+        <div class="container col-xs-12 col-sm-6 hero-feature">
         <div id="sign-up">
-          <h1>Sign Up</h1><br>
+          <h1 class="home-text">SIGN UP</h1><br>
           <%= form_for User.new do |f| %>
             <% if User.new.errors.any? %>
               <div class="error_messages">
@@ -69,7 +73,7 @@
               <%= f.password_field :password_confirmation, :required => true, :placeholder => "Confirm Password", class: "form-control sign-up" %>
             </div><br>
 
-            <div class="actions"><%= f.submit 'Create Account', class: 'btn btn-default' %></div>
+            <div class="actions"><%= f.submit 'Create Account', class: 'btn submit-btn' %></div>
           <% end %>
           <br><br>
 
@@ -79,7 +83,17 @@
 
     </div>
 
-  </div>
+  </header>
+
+ <!--  <section class="about text-center">
+    <h3>ABOUT THIS APP</h3>
+<br><br><br><br><br>
+
+
+  </section> -->
+
+
+
 </div>
 
 

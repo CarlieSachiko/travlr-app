@@ -6,7 +6,7 @@
     <br>
 
       <!-- Modal Trigger -->
-          <button type="button" class="btn" data-toggle="modal" data-target="#newAccModal">
+          <button type="button" class="btn btn-inverse" data-toggle="modal" data-target="#newAccModal">
                   Create New Trip
           </button>
           <!-- Modal  -->
@@ -59,7 +59,6 @@
                   </div>
                 </div>
               </div>
-         <div id="notice"><%= notice %> </div>
       </div>
     </div>
 
@@ -93,20 +92,20 @@
     <% end %>
 
     <hr>
-    <h4>Trip Invites</h4>
+    <h4>Trips I'm Invited To:</h4>
     <% if (current_user.invited_trips.count > 0) %>
       <div class="row">
         <% current_user.invited_trips.each do |t| %>
           <div class="container text-center col-xs-6 col-sm-4 hero-feature trip-thumb" >
-            <div class="thumbnail" style="background-image: url(<%= t.image.url %>)">
+            <div class="thumbnail trip-bckgrnd" style="background-image: url(<%= t.image.url %>)">
               <div class='caption'>
-                <h2 class="trip-info"><%= link_to t.name, trip_path(t) %></h2>
+                <h3><%= link_to t.name.upcase, trip_path(t), class: "trip-info" %></h3>
                 <p class="trip-info"><%= t.startdate.to_formatted_s(:long) %> - <%= t.enddate.to_formatted_s(:long) %></p>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
 
     <% else %>
         <p>You currently have no invitations.</p>

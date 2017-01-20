@@ -1,8 +1,7 @@
 <div class="profile">
   <div class="jumbotron text-center">
-    <h2>My Bucket List</h2>
-    <h3><%= @accommodation.city.name %>, <%= @accommodation.city.country %></h3>
-    <%= link_to "Go Back", city_path(@accommodation.city_id) %>
+    <h2>MY BUCKET LIST</h2>
+    <h3><%= @accommodation.city.name.upcase %>, <%= @accommodation.city.country.upcase %></h3>
     <div id="notice"><%= notice %></div>
   </div>
 
@@ -19,12 +18,14 @@
   </div>
 
 <div class="container">
-<h4><%= @accommodation.name %></h4>
-<h4><%= @accommodation.address %></h4>
+  <h4><%= @accommodation.name %></h4>
+  <h4>Address: <%= @accommodation.address %></h4>
+  <h4>Notes:</h4>
+  <p><%= @accommodation.note %><p>
 
-
-  <%= link_to "Edit", edit_accommodation_path %> |
-  <%= link_to "Delete", accommodation_path(@accommodation), method: :delete, data: { confirm: 'Are you sure???' } %>
+  <br>
+  <%= link_to "Edit", edit_accommodation_path, class: "blck-link" %> |
+  <%= link_to "Delete", accommodation_path(@accommodation), method: :delete, data: { confirm: 'Are you sure???' }, class: "blck-link" %>
 </div>
 
 

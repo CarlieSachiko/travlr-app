@@ -15,6 +15,8 @@
       <span><%= link_to @sight.city.name, city_path(@sight.city) %></span>
       <span class="glyphicon glyphicon-chevron-right"></span>
       <span><%= link_to @sight.name, sight_path(@sight) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to "Edit", edit_sight_path(@sight) %></span>
     </div>
   </div>
 
@@ -47,8 +49,5 @@
       <div class="actions"><%= f.submit 'Save', class: "btn" %></div>
     <% end %>
   </div>
-
-
-
 
 </div>

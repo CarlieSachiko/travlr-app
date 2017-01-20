@@ -1,18 +1,31 @@
 <div class="profile">
   <div class="jumbotron text-center">
-    <h2>My Bucket List</h2>
-    <h3><%= @eatery.city.name %>, <%= @eatery.city.country %></h3>
-    <%= link_to "Go Back", city_path(@eatery.city_id) %>
+    <h2>MY BUCKET LIST</h2>
+    <h3><%= @eatery.city.name.upcase %>, <%= @eatery.city.country.upcase %></h3>
     <div id="notice"><%= notice %></div>
+  </div>
+
+  <div class="progressbar text-left container-fluid">
+    <div class="container">
+      <span><%= link_to "Profile", user_path(current_user) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <%= link_to "My Bucket List", user_cities_path(current_user) %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @eatery.city.name, city_path(@eatery.city) %></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span><%= link_to @eatery.name, eatery_path(@eatery) %></span>
+    </div>
   </div>
 
 <div class="container">
   <h4><%= @eatery.name %></h4>
   <h4>Address: <%= @eatery.address %></h4>
+  <h4>Notes:</h4>
+  <p><%= @eatery.note %><p>
 
-
-  <%= link_to "Edit", edit_eatery_path %> |
-  <%= link_to "Delete", sight_path(@eatery), method: :delete, data: { confirm: 'Are you sure???' } %>
+  <br>
+  <%= link_to "Edit", edit_eatery_path, class: "blck-link" %> |
+  <%= link_to "Delete", sight_path(@eatery), method: :delete, data: { confirm: 'Are you sure???' }, class: "blck-link" %>
 </div>
 
 
