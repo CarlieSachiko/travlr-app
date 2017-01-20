@@ -40,10 +40,10 @@
                     <%= label_tag :country, "Country" %>
                     <%= f.text_field :country, :required => true, :placeholder => "Country", class: "form-control" %>
                   </div>
-                  <!-- <div class="field form-group text-left">
-                    <%#= label_tag :done, "Did it? Check it." %> &nbsp;
-                    <%#= f.check_box :done %>
-                  </div> -->
+                  <div class="field form-group text-left">
+                    <%= label_tag :done, "Did it? Check it." %> &nbsp;
+                    <%= f.check_box :done %>
+                  </div>
                   <div class="actions form-group btn">
                     <%= f.submit 'Save', class: "form-control" %>
                   </div>
