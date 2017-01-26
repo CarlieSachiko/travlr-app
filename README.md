@@ -6,6 +6,9 @@ I created this app as a tool to accomplish your bucket list! Each user has a buc
 
 Happy travelling!
 
+Landing Page: 
+![Imgur](http://i.imgur.com/wcl3j2m.png)
+
 --------
 ###Technologies Used
 For this app I used:
