@@ -1,23 +1,19 @@
 <div class="profile trip-show">
   <div class="jumbotron text-center" style="background-image: url(<%= @trip.image.url %>)" >
-    <h1><%= @trip.name.upcase %></h1>
+    <h2><%= @trip.name.upcase %></h2>
     <h4 class="text-center"><%= @trip.startdate.to_formatted_s(:long) %> - <%= @trip.enddate.to_formatted_s(:long) %></h4>
-    <h3><%= @trip.country %></h3>
+    <h4><%= @trip.country %></h4>
     <div>
       <%= link_to "", edit_trip_path, class: "glyphicon glyphicon-pencil sm-glyphicon" %> &nbsp;&nbsp;|
       <%= link_to "", @trip, method: :delete, data: { confirm: 'Are you sure???' }, class: "glyphicon glyphicon-trash sm-glyphicon" %>
     </div>
   </div>
 
-  <div class="progressbar text-left container-fluid">
-    <div class="container">
-      <span><%= link_to "Profile", user_path(current_user) %></span>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to "My Trips", trips_path(current_user) %>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to @trip.name, trip_path(@trip) %>
-    </div>
-  </div>
+  <ol class="breadcrumb">
+    <li><%= link_to "Profile", user_path(current_user), class: "grey-link" %></li>
+    <li><%= link_to "My Trips", trips_path(current_user), class: "grey-link" %></li>
+    <li class="active"><%= @trip.name %></li>
+  </ol>
 
   <div class="container">
     <div>
@@ -124,7 +120,7 @@
                   <br>
 
                   <%= link_to "Edit", edit_day_path(d), class: "blck-link" %> |
-                  <%= link_to "Delete", @trip, method: :delete, data: { confirm: 'Are you sure???' }, class: "blck-link" %>
+                  <%= link_to "Delete", d, method: :delete, data: { confirm: 'Are you sure???' }, class: "blck-link" %>
                   <br>
                 </div>
               </div>

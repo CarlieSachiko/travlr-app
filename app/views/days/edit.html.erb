@@ -3,17 +3,12 @@
     <h4>Edit Day</h4>
   </div>
 
-  <div class="progressbar text-left container-fluid">
-    <div class="container">
-      <span><%= link_to "Profile", user_path(current_user) %></span>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to "My Trips", trips_path(current_user) %>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to @trip.name, trip_path(@day.trip_id) %>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to "Edit", edit_day_path(@day) %>
-    </div>
-  </div>
+  <ol class="breadcrumb">
+    <li><%= link_to "Profile", user_path(current_user), class: "grey-link" %></li>
+    <li><%= link_to "My Trips", trips_path(current_user), class: "grey-link" %></li>
+    <li><%= link_to @trip.name, trip_path(@day.trip_id), class: "grey-link" %></li>
+    <li class="active">Edit Day</li>
+  </ol>
 
   <div class="container">
 

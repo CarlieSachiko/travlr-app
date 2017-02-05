@@ -4,17 +4,12 @@
     <div id="notice"><%= notice %></div>
   </div>
 
-  <div class="progressbar text-left container-fluid">
-    <div class="container">
-      <span><%= link_to "Profile", user_path(current_user) %></span>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to "My Trips", trips_path(current_user) %>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to @trip.name, trip_path(@trip) %>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to "Edit", edit_trip_path(@trip) %>
-    </div>
-  </div>
+  <ol class="breadcrumb">
+    <li><%= link_to "Profile", user_path(current_user), class: "grey-link" %></li>
+    <li><%= link_to "My Trips", trips_path(current_user), class: "grey-link" %></li>
+    <li><%= link_to @trip.name, trip_path(@trip), class: "grey-link" %></li>
+    <li class="active">Edit</li>
+  </ol>
 
   <div class="container">
 

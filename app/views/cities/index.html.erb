@@ -26,13 +26,10 @@
     <% end %>
   </div>
 
-  <div class="progressbar text-left container-fluid">
-    <div class="container">
-      <span><%= link_to "Profile", user_path(current_user) %></span>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to "My Bucket List", user_cities_path(current_user) %>
-    </div>
-  </div>
+  <ol class="breadcrumb">
+    <li><%= link_to "Profile", user_path(current_user), class: "grey-link" %></li>
+    <li class="active">My Bucket List</li>
+  </ol>
 
   <div class="container">
     <% if (@user.cities.count > 0) %>

@@ -58,15 +58,11 @@
     <div id="notice"><%= notice %></div>
   </div>
 
-  <div class="progressbar text-left container-fluid">
-    <div class="container">
-      <span><%= link_to "Profile", user_path(current_user) %></span>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <%= link_to "My Bucket List", user_cities_path(current_user) %>
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span><%= link_to @city.name, city_path(@city) %></span>
-    </div>
-  </div>
+  <ol class="breadcrumb">
+    <li><%= link_to "Profile", user_path(current_user), class: "grey-link" %></li>
+    <li><%= link_to "My Bucket List", user_cities_path(current_user), class: "grey-link" %></li>
+    <li class="active"><%= @city.name %></li>
+  </ol>
 
   <div class="container">
     <div class="row">
