@@ -21,7 +21,7 @@ For this app I used:
 ###Installation Instructions
 Follow the link below to start!
 
-[Travlr](https://wdi-travel-app.herokuapp.com/)
+[Travlr](https://wdi-travlr-app.herokuapp.com/)
 
 --------
 ###Unsolved Problems
