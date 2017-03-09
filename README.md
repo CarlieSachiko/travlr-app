@@ -4,6 +4,8 @@
 ###About
 I created this app as a tool to accomplish your bucket list! Each user has a bucket list where they can save places they want to go, as well as things to do in each of those places. Users also have the ability to create trips. These trips have an itinerary for easy and organized planning. You are also able to invite other users to your trips.
 
+To see wireframes and user stories check out the [Trello board](https://trello.com/b/wouq1oiQ/wdi-project-2-travlr).
+
 Happy travelling!
 
 Landing Page: 
