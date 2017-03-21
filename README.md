@@ -1,7 +1,7 @@
-#Travlr App
-####Created By Carlie Clippinger
+# Travlr App
+#### Created By Carlie Clippinger
 --------
-###About
+### About
 I created this app as a tool to accomplish your bucket list! Each user has a bucket list where they can save places they want to go, as well as things to do in each of those places. Users also have the ability to create trips. These trips have an itinerary for easy and organized planning. You are also able to invite other users to your trips.
 
 To see wireframes and user stories check out the [Trello board](https://trello.com/b/wouq1oiQ/wdi-project-2-travlr).
@@ -12,7 +12,7 @@ Landing Page:
 ![Imgur](http://i.imgur.com/wcl3j2m.png)
 
 --------
-###Technologies Used
+### Technologies Used
 For this app I used:
 * HTML
 * CSS
@@ -20,19 +20,19 @@ For this app I used:
 * Ruby on Rails
 
 --------
-###Installation Instructions
+### Installation Instructions
 Follow the link below to start!
 
 [Travlr](https://wdi-travlr-app.herokuapp.com/)
 
 --------
-###Unsolved Problems
+### Unsolved Problems
 * Required password length
 * Rotating background images on my home page
 * Days don't appear in chronological order
 
 --------
-###Next Steps
+### Next Steps
 Here is a list of things I would like to do in the future:
 * Think of a name for the app
 * Add comments to the trips so users can collaborate
